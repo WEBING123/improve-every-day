@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* 简单的盒子 */
+        .wave {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            background-color: #5291e0;
+            overflow: hidden;
+        }
+
+        /* 两个不规则圆形（相对盒子进行定位，距离底部距离则为波浪高度） */
+        .wave::before,
+        .wave::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 15%;
+            width: 500%;
+            height: 500%;
+            border-radius: 45%;
+            background-color: #fff;
+            transform: translateX(-50%);
+            /* 居中 */
+            animation: rotate 15s linear infinite;
+        }
+
+        /* 其中一个不规则圆形调整一下样式，以便区分（或者调整animation的参数来区分） */
+        .wave::before {
+            bottom: 10%;
+            opacity: .5;
+            border-radius: 47%;
+        }
+
+        /* 旋转动画 */
+        @keyframes rotate {
+            from {
+                transform: translateX(-50%) rotateZ(0deg);
+            }
+
+            to {
+                transform: translateX(-50%) rotateZ(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wave"></div>
+</body>
+
+</html>

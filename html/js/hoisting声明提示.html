@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <script>
+        console.log(a);
+        var a = 0;
+
+        function fn() {
+            console.log(b);
+            var b = 1;
+
+            function test() {
+                console.log(c);
+                var c = 2;
+            }
+            test();
+        }
+        fn();
+    </script> -->
+
+    <script>
+        //变量声明提升后，变成下面这样
+        var a;
+        console.log(a);
+        a = 0;
+
+        function fn() {
+            var b;
+            console.log(b);
+            b = 1;
+
+            function test() {
+                var c;
+                console.log(c);
+                c = 2;
+            }
+            test();
+        }
+        fn();
+    </script>
+</body>
+
+</html>

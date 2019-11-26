@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../frame/layui/css/layui.css">
+    <style>
+        table tr th,
+        table tr td {
+            text-align: center !important;
+        }
+
+        .bgcolor1 {
+            background-color: #daeffd;
+        }
+
+        .bgcolor2 {
+            background-color: #fde4d9;
+        }
+    </style>
+</head>
+
+<body>
+    <table class="layui-table" id="layTable" lay-filter="layTable"></table>
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script src="../../frame/layui/layui.js"></script>
+    <script>
+        layui.use(['form', 'table'], function () {
+            var form = layui.form;
+            var table = layui.table;
+            form.render();
+
+            table.render({
+                elem: '#layTable',
+                url: "../../data/complexHeader.json",
+                cols: [
+                    [{
+                            field: 'area',
+                            title: '行政区划',
+                            minWidth: 90,
+                            rowspan: 4
+                        },
+                        {
+                            field: 'year',
+                            title: '年度',
+                            minWidth: 75,
+                            rowspan: 4
+                        }, {
+                            field: 'month',
+                            title: '月份',
+                            minWidth: 65,
+                            rowspan: 4
+                        }, {
+                            field: '',
+                            title: '上月账面结余',
+                            colspan: 2
+                        }, {
+                            field: '',
+                            title: '当月收入资金',
+                            colspan: 3
+                        }, {
+                            field: '',
+                            title: '当月拨付资金（含年内拨付的历年资金）',
+                            colspan: 4
+                        }, {
+                            field: '',
+                            title: '当月账面结余',
+                            colspan: 2
+                        }
+                    ],
+                    [
+                        // 第二行 
+                        // 上年末账面结余
+                        {
+                            field: 'surplusCenterLastyear',
+                            title: '中央水库移民资金',
+                            style: 'background-color: #daeffd',
+                            minWidth: 150,
+                            rowspan: 3
+                        }, {
+                            field: 'surplusProvinceLastyear',
+                            title: '省级移民资金',
+                            style: 'background-color: #daeffd',
+                            minWidth: 120,
+                            rowspan: 3
+                        },
+                        // 本年度收入资金
+                        {
+                            field: '',
+                            title: '中央水库移民资金',
+                            colspan: 2
+                        }, {
+                            field: 'inProvinceYm',
+                            title: '省级移民资金',
+                            style: 'background-color: #fde4d9',
+                            minWidth: 120,
+                            rowspan: 3
+                        },
+                        // 本年度拨付资金（含年内拨付的历年资金）
+                        {
+                            field: '',
+                            title: '中央水库移民资金',
+                            colspan: 3
+                        }, {
+                            field: 'outProvinceYm',
+                            title: '省级移民资金',
+                            style: 'background-color: #daeffd',
+                            minWidth: 120,
+                            rowspan: 3
+                        },
+                        // 账面结余
+                        {
+                            field: 'surplusCenter',
+                            title: '中央水库移民资金',
+                            style: 'background-color: #fde4d9',
+                            minWidth: 150,
+                            rowspan: 3
+                        }, {
+                            field: 'surplusProvince',
+                            title: '省级移民资金',
+                            style: 'background-color: #fde4d9',
+                            minWidth: 120,
+                            rowspan: 3
+                        }
+                    ],
+                    [
+                        // 第三行
+                        // 本年度收入资金
+                        {
+                            field: 'inCenterHf',
+                            title: '后扶资金',
+                            style: 'background-color: #fde4d9',
+                            minWidth: 90,
+                            rowspan: 2
+                        }, {
+                            field: 'inCenterXm',
+                            title: '基金项目资金',
+                            style: 'background-color: #fde4d9',
+                            minWidth: 90,
+                            rowspan: 2
+                        },
+                        // 本年度拨付资金（含年内拨付的历年资金）
+                        {
+                            field: '',
+                            title: '后扶资金',
+                            minWidth: 90,
+                            colspan: 2
+                        }, {
+                            field: 'outCenterXm',
+                            title: '基金项目资金',
+                            style: 'background-color: #daeffd',
+                            minWidth: 90,
+                            rowspan: 2
+                        }
+                    ],
+                    [
+                        // 第四行
+                        // 本年度拨付资金（含年内拨付的历年资金）
+                        {
+                            field: 'outCenterZb',
+                            title: '直补到人资金',
+                            style: 'background-color: #daeffd',
+                            minWidth: 120
+                        }, {
+                            field: 'outCenterHf',
+                            title: '后扶项目资金',
+                            style: 'background-color: #daeffd',
+                            minWidth: 120
+                        }
+                    ]
+                ],
+                even: true,
+                page: true,
+                done: function (res) {
+                    // 无数据时
+                    if (res.count == 0) {}
+
+                    // 注意事项
+                    // 初始小计和合计是以一个完整的 table 拼接在 layui 数据表格之后
+                    // 导致需要对其中的每一个单元格的宽度进行设置，费力费时，兼容性还不好，固定宽度太死了
+                    // 正确做法是拼接在 layui 数据表格的最后一个 tr 之后
+                    // 如此只需设置 跨列(colspan) 的个数，宽度自然继承
+                    $('.layui-table-body table tbody tr:last').after('<tr>' +
+                        '<td>小计</td>' +
+                        '<td></td>' +
+                        '<td></td>' +
+                        '<td>' + '26733.37' + '</td>' +
+                        '<td>' + '4387.27' + '</td>' +
+                        '<td colspan="2">' + '0.00' + '</td>' +
+                        '<td>' + '0.00' + '</td>' +
+                        '<td colspan="2">' + '387.28' + '</td>' +
+                        '<td>' + '1258.83' + '</td>' +
+                        '<td>' + '331.91' + '</td>' +
+                        '<td>' + '25087.26' + '</td>' +
+                        '<td>' + '4055.36' + '</td>' +
+                        '</tr>' +
+
+                        '<tr>' +
+                        '<td>合计</td>' +
+                        '<td></td>' +
+                        '<td></td>' +
+                        '<td class="bgcolor1" colspan="2">' + '31120.64' + '</td>' +
+                        '<td class="bgcolor2" colspan="3">' + '0.00' + '</td>' +
+                        '<td class="bgcolor1" colspan="4">' + '1978.02' + '</td>' +
+                        '<td class="bgcolor2" colspan="2">' + '29142.62' +
+                        '</td>' +
+                        '</tr>')
+
+                }
+            })
+
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .openShow-btn {
+            width: 50px;
+            height: 25px;
+            background: #d1d1d1;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .openShow-btn span {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            transform-origin: left;
+            transition: .3s all linear;
+            display: inline-block;
+            background: #fff;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .openShow-btn.on {
+            background: #3498db;
+        }
+
+        .openShow-btn.on span {
+            left: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="openShow-btn openShowBtn" data-lock="true">
+        <span></span>
+    </div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+<script>
+    $(".openShowBtn").click(function () {
+        $(this).toggleClass("on");
+    });
+</script>
+
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .printBtn {
+            display: flex;
+            align-content: center;
+            justify-content: center;
+        }
+    </style>
+
+    <link rel="stylesheet" href="../../../frame/layui/css/layui.css">
+    <script src="../../../frame/lodop/LodopFuncs.js"></script>
+</head>
+
+<object id="LODOP_OB" classid="clsid:2105C259-1E0C-4534-8141-A753534CB4CA" width=0 height=0>
+    <embed id="LODOP_EM" type="application/x-print-lodop" width=0 height=0></embed>
+</object>
+
+<body>
+    <div class="layui-container">
+        <div class="layui-row">
+            <div id="table">
+                <link rel="stylesheet" href="../../../frame/layui/css/layui.css">
+                <table class="layui-table">
+                    <thead>
+                        <tr>
+                            <th colspan="6" class="tit">
+                                <input type="text" name="tit" class="layui-input">
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>设备名称</td>
+                            <td><input type="text" name="" class="layui-input"></td>
+                            <td>巡视时间</td>
+                            <td><input type="text" name="" class="layui-input"></td>
+                            <td>天气</td>
+                            <td><input type="text" name="" class="layui-input"></td>
+                        </tr>
+                        <tr>
+                            <td>序号</td>
+                            <td colspan="3">检查内容
+                                <i data-method="setTop" class="glyphicon glyphicon-edit selectCheckItem"></i>
+                            </td>
+                            <td colspan="2">检查情况</td>
+                        </tr>
+                        <!-- 写入检查内容 开始 -->
+                        <tr>
+                            <td>1</td>
+                            <td colspan="3">安全警示标志是否设置</td>
+                            <td colspan="2">正常</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td colspan="3">安全防护栏是否完整</td>
+                            <td colspan="2">异常</td>
+                        </tr>
+                        <!-- 写入检查内容 结束 -->
+                        <tr>
+                            <td>备注</td>
+                            <td colspan="3">
+                                <input type="text" name="" class="layui-input">
+                            </td>
+                            <td>检查结论</td>
+                            <td><input type="text" name="" class="layui-input"></td>
+                        </tr>
+                        <tr>
+                            <td>检查人</td>
+                            <td colspan="2"><input type="text" name="" class="layui-input"></td>
+                            <td>复核人</td>
+                            <td colspan="2"><input type="text" name="" class="layui-input"></td>
+                        </tr>
+                        <tr>
+                            <td>说明</td>
+                            <td colspan="5" class="desc">
+                                <div>1.每月两人对工程进行检查，按实记录；</div>
+                                <div>2.检查情况正常时打√；</div>
+                                <div>3.若发现异常，在检查情况说写明发现异常，异常在备注中写明，并上报区域负责人；</div>
+                                <div>4.每月25日前需将检查表上交。</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="printBtn">
+        <button onclick="prn1_preview()" type="button" class="layui-btn layui-btn-normal">PRINT</button>
+    </div>
+    <script language="JavaScript">
+        var LODOP;
+
+        function refreshData() { //让innerHTML获取的内容包含input和select(option)的最新值
+            var allInputObject = document.body.getElementsByTagName("input");
+            for (i = 0; i < allInputObject.length; i++) {
+                if (allInputObject[i].type == "checkbox") {
+                    if (allInputObject[i].checked)
+                        allInputObject[i].setAttribute("checked", "checked");
+                    else
+                        allInputObject[i].removeAttribute("checked");
+                } else if (allInputObject[i].type == "radio") {
+                    if (allInputObject[i].checked)
+                        allInputObject[i].setAttribute("checked", "checked");
+                    else
+                        allInputObject[i].removeAttribute("checked");
+                } else allInputObject[i].setAttribute("value", allInputObject[i].value);
+            };
+            for (i = 0; i < document.getElementsByTagName("select").length; i++) {
+                var sl = document.getElementsByTagName("select")[i];
+                for (j = 0; j < sl.options.length; j++) {
+                    if (sl.options[j].selected)
+                        sl.options[j].setAttribute("selected", "selected");
+                    else sl.options[j] = new Option(sl.options[j].text, sl.options[j].value);
+                };
+            };
+        };
+
+        function prn1_preview() {
+            refreshData();
+            CreateOneFormPage();
+            LODOP.PREVIEW();
+        };
+
+        function CreateOneFormPage() {
+            LODOP = getLodop();
+            LODOP.PRINT_INIT("打印控件功能演示_Lodop功能_表单一");
+
+            var strBodyStyle =
+                "<style>.no-print,a{display: none;} input{border: 0px!important;}.supertable{border:1px solid #ccc}.supertitle{ width:100%;font-weight: bold;} table tr td{border:1px solid #000000 !important;text-align: center}.applytable1_title,.sanhe1_left{color: #000000!important;}";
+
+
+            LODOP.SET_PRINT_PAGESIZE(2, "", "", "");
+            LODOP.SET_PRINT_STYLEA(0, "ItemType", 2);
+            LODOP.SET_PRINT_STYLEA(0, "Horient", 2);
+            LODOP.SET_PRINT_STYLEA(0, "Vorient", 2);
+            LODOP.SET_PRINT_MODE("PRINT_PAGE_PERCENT", 'Auto-Width'); //按整宽且不变形，即按整宽的同时，高度与之同比。
+            //LODOP.SET_PRINT_STYLE("border",1);
+
+            LODOP.SET_SHOW_MODE("LANDSCAPE_DEFROTATED", 1); //横向时的正向显示
+
+
+            LODOP.ADD_PRINT_HTM(10, 10, '98%', '100%', document.getElementById("table").innerHTML + strBodyStyle);
+        };
+    </script>
+</body>
+
+</html>

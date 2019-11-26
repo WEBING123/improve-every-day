@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- 前端实现在线预览pdf、word、xls、ppt等文件 - 简书 https://www.jianshu.com/p/2f39de746900 -->
+
+    <!-- 方式一、
+        pdf文件理论上可以在浏览器直接打开预览但是需要打开新页面。
+        在仅仅是预览pdf文件且UI要求不高的情况下可以直接通过a标签href属性实现预览 
+    -->
+    <a href="../../file/JiangsuJurong2018Plan.pdf" target="view_window">江苏句容抽水蓄能电站工程建设征地和移民安置2018年度工作计划</a>
+
+    <!-- 
+        方式二、
+        通过jquery插件jquery.media.js实现
+        这个插件可以实现pdf预览功能（包括其他各种媒体文件）但是对word等类型的文件无能为力。
+
+     -->
+    <div id="handout_wrap_inner"></div>
+
+    <!-- 
+        word文件
+     -->
+    <a href="http://www.xdocin.com/xdoc?_func=to&amp;_format=html&amp;_cache=1&amp;_xdoc=http://www.xdocin.com/demo/demo.docx"
+        target="view_window" rel="nofollow">XDOC</a>
+
+    <!-- 
+         word、xls、ppt文件在线预览功能
+      -->
+
+    <iframe
+        src='https://view.officeapps.live.com/op/view.aspx?src=http://storage.xuetangx.com/public_assets/xuetangx/PDF/1.xls'
+        width='500px' height='500px' frameborder='1'>
+    </iframe>
+
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/jquery.media.js"></script>
+    <script>
+        // 方式二
+        $('#handout_wrap_inner').media({
+            width: '500px',
+            height: '500px',
+            autoplay: true,
+            // src: 'http://storage.xuetangx.com/public_assets/xuetangx/PDF/PlayerAPI_v1.0.6.pdf',
+            src: '../../file/JiangsuJurong2018Plan.pdf',
+        });
+    </script>
+</body>
+
+</html>

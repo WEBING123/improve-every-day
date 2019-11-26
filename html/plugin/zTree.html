@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.css">
+    <link rel="stylesheet" href="../../frame/zTree/css/zTreeStyle/zTreeStyle.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul id="tree" class="ztree"></ul>
+    </div>
+
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+<script src="../../frame/zTree/js/jquery.ztree.core.js"></script>
+<script src="../../frame/zTree/js/jquery.ztree.excheck.js"></script>
+<script>
+    var setting = {
+        view: {
+            showLine: false // 不显示连接线
+        },
+        check: {
+            enable: true,
+            chkStyle: "checkbox" //显示 checkbox 选择框，默认checkbox可选择值radio
+        },
+        async: {
+            enable: true, //要开启async功能必须设置为true,其他地方同理
+            dataType: "json",
+            type: "get",
+            url: "../../data/zTree.json"
+        },
+        data: {
+            simpleData: {
+                enable: true,
+                idKey: "id", //节点id名
+                pIdKey: "pid", //父节点id名
+                rootPId: 0 //默认根节点为0
+            }
+        }
+    };
+    var zTreeNodes = [];
+    var city = $.fn.zTree.init($("#tree"), setting, zTreeNodes);
+</script>
+
+</html>

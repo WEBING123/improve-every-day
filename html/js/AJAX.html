@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link href="https://cdn.bootcss.com/zui/1.9.1/css/zui.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container">
+        <div id="muisicList" class="cards cards-borderless">
+
+        </div>
+    </div>
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+
+    <script>
+        $.ajax({
+            type: "get",
+            url: "https://api.apiopen.top/musicRankings",
+            dataType: "json",
+            success: function (result) {
+                render(result);
+            },
+            error: function (data) {}
+        });
+
+        function render(result) {
+            var musicJSON = result.result;
+            console.log(musicJSON);
+
+            var muisicList = document.getElementById("muisicList");
+
+            for (var i = 0; i < musicJSON[0].content.length; i++) {
+                muisicList.innerHTML +=
+                    '<div class="col-md-4 col-sm-6 col-lg-3">' +
+                        '<a class="card" href="javascript:void(0);">' +
+                            '<img src="' + musicJSON[0].content[i].pic_big + '" alt="">' +
+                            '<div class="card-heading"><strong>'+ musicJSON[0].content[i].title +'</strong></div>' +
+                            '<div class="card-content text-muted">'+ musicJSON[0].content[i].author +'</div>' +
+                        '</a>' +
+                    '</div>'
+            }
+        }
+    </script>
+</body>
+
+</html>

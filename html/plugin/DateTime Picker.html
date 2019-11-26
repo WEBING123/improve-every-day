@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../frame/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../frame/bootstrap/datetimepicker/css/bootstrap-datetimepicker.min.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="form-group">
+            <label>开始日期:</label>
+            <div class="input-group">
+                <input class="form-control" type="text" value="" id="startDate2">
+            </div>
+            <label>结束日期:</label>
+            <div class="input-group">
+                <input class="form-control" type="text" value="" id="endDate2">
+            </div>
+
+            <label>限制日期</label>
+            <div class="input-group">
+                <input class="form-control form_datetime" type="text" value="">
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script src="../../frame/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../frame/bootstrap/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../../frame/bootstrap/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script>
+        $('#startDate2').datetimepicker({
+            language: "zh-CN", //汉化
+            todayBtn: true, //显示今天按钮
+            autoclose: true, //选择日期后自动关闭日期选择框
+            todayHighlight: true, //当天高亮显示
+            minView: "month", //不显示时分秒
+            showMeridian: 1,
+            pickerPosition: "bottom-left",
+            startDate: new Date(new Date() - 1000 * 60 * 60 * 24 * 365), //只显示一年的日期365天
+            endDate: new Date()
+        }).on('click', function (e) {
+            $("#startDate2").datetimepicker("setEndDate", $("#endDate2").val());
+        });
+        $('#endDate2').datetimepicker({
+            language: "zh-CN",
+            todayBtn: true,
+            autoclose: true,
+            todayHighlight: true,
+            minView: "month",
+            pickerPosition: "bottom-left",
+            startDate: new Date(new Date() - 1000 * 60 * 60 * 24 * 365),
+            endDate: new Date()
+        }).on('click', function (e) {
+            $("#endDate2").datetimepicker("setStartDate", $("#startDate2").val());
+        });
+
+        // 限制日期
+
+        $('.form_datetime').datetimepicker({
+            language: "zh-CN",
+            format: "yyyy-mm", // 格式化日期
+            weekStart: 1,
+            startView: 3, //这里就设置了默认视图为年视图
+            minView: 3, //设置最小视图为年视图
+            forceParse: 0,
+            todayBtn: false,
+            autoclose: true,
+            todayHighlight: true,
+            startDate: "2000-1",
+            endDate: new Date(),
+            pickerPosition: 'bottom-right', // 控件显示位置
+            
+        });
+    </script>
+</body>
+
+</html>

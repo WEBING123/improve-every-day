@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>调用 setTimeout 函数会在一个时间段过去后在队列中添加一个消息。
+        <br>这个时间段作为函数的第二个参数被传入。如果队列中没有其它消息，消息会被马上处理。
+        <br>但是，如果有其它消息，setTimeout 消息必须等待其它消息处理完。
+        <br>因此第二个参数仅仅表示<em style="color: red;">最少的时间 而非确切的时间</em></h3>
+
+    <script>
+        a();
+        b();
+
+        function a() {
+            console.log("执行A函数");
+            setTimeout(() => {
+                console.log("执行A函数的延迟函数");
+            }, 1000);
+            // 时间设置为0，也是会照样先执行函数b
+            // }, 0);
+        }
+
+        function b() {
+            console.log("执行B函数");
+        }
+    </script>
+</body>
+
+</html>

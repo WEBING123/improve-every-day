@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../frame/layui/css/layui.css">
+    <link rel="stylesheet" href="../../frame/zTree/css/zTreeStyle/zTreeStyle.css">
+    <link rel="stylesheet" href="../../css/webing.css">
+    <style>
+        /* zbmulselect.css */
+        .muls-box {
+            margin: 0px auto;
+            margin-top: 20px;
+            height: 400px;
+        }
+
+        .muls-box .muls-left-box,
+        .muls-box .muls-right-box,
+        .muls-box .muls-box-btn {
+            float: left;
+            height: 100%;
+        }
+
+        .muls-left-box,
+        .muls-right-box {
+            width: 200px;
+            border: 1px #AAAAAA solid;
+        }
+
+        .muls-top {
+            height: 7%;
+            line-height: 29px;
+            border-bottom: 1px #AAAAAA solid;
+        }
+
+        .muls-top p {
+            margin: 0;
+            padding-left: 10px;
+        }
+
+        .muls-content {
+            position: relative;
+            height: 371px;
+            overflow: auto;
+        }
+
+        .muls-content::-webkit-scrollbar,
+        select::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+
+        .muls-content::-webkit-scrollbar-thumb,
+        select::-webkit-scrollbar-thumb {
+            background-color: #999;
+            background-clip: padding-box;
+            min-height: 28px;
+        }
+
+        .muls-content::-webkit-scrollbar-track,
+        select::-webkit-scrollbar-track {
+            background-color: #ddd;
+        }
+
+        .muls-content-select {
+            width: 100%;
+            float: left;
+            height: 100%;
+            border: 0px;
+        }
+
+        .muls-btn {
+            width: 50px;
+            background: #FFFFFF;
+            border: 1px #AAAAAA solid;
+        }
+
+        .muls-checks {
+            display: none;
+        }
+
+        .muls-box-btn {
+            width: 100px;
+            border-top: 1px #AAAAAA solid;
+            border-bottom: 1px #AAAAAA solid;
+            text-align: center;
+        }
+
+        .muls-btn-mid {
+            width: 60px;
+            height: 30px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        .muls-btn-mid-1 {
+            margin-top: 110px;
+        }
+
+        option {
+            padding: 8px;
+            cursor: pointer;
+            border-bottom: 1px solid #F0F0F0;
+        }
+
+        /* 上移、下移 */
+        .layui-icon {
+            color: red;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+
+        .HV-center {
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body class="HV-center">
+    <div class="muls-box">
+        <div class="muls-left-box">
+            <div class="muls-top">
+                <p>待选人员：</p>
+            </div>
+            <div class="muls-content">
+                <ul id="treeDemoL" class="ztree"></ul>
+            </div>
+        </div>
+
+        <div class="muls-box-btn">
+            <button class="muls-btn muls-btn-mid muls-btn-mid-1" id="addtoR">&gt;</button>
+            <button class="muls-btn muls-btn-mid" id="removeL">&lt;</button>
+            <button class="muls-btn muls-btn-mid" id="addAll">&gt;&gt;</button>
+            <button class="muls-btn muls-btn-mid" id="removeAll">&lt;&lt;</button>
+        </div>
+
+        <div class="muls-right-box">
+            <div class="muls-top">
+                <p>已选人员：
+                    <i onclick="sortUp()" class="layui-icon layui-icon-up"></i>
+                    <i onclick="sortDown()" class="layui-icon layui-icon-down"></i>
+                </p>
+            </div>
+            <div class="muls-content">
+                <select id="muls-select" multiple="multiple" class="muls-content-select">
+
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top: 20px;">
+        <button onclick="getRigthValues()">获取右侧数据（仅开发时使用）</button>
+        <button onclick="getExchangeValues()">获取右侧改变数据（仅开发时使用）</button>
+    </div>
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script src="../../frame/zTree/js/jquery.ztree.core.js"></script>
+    <script>
+        // zbmulselect.js
+        ;
+        (function ($) {
+
+            var treeDOM1;
+            var defaultData;
+
+            var setting = {
+                data: {
+                    simpleData: {
+                        enable: true
+                    }
+                }
+            }
+
+            var methods = {
+                getData: function () {
+                    var ids = [];
+                    $("#muls-select option").each(function () {
+                        ids.push($(this).val());
+                    });
+                    return ids;
+                },
+                getExchange: function () {
+                    var defaultId = [];
+                    var arrAdd = [];
+                    var arrDel = [];
+                    var nowId = [];
+                    $.each(defaultData, function (i, item) {
+                        defaultId.push(item.id);
+                    });
+                    $("#muls-select option").each(function () {
+                        var id = $(this).val();
+                        var obj = {};
+                        var index = defaultId.indexOf(id);
+                        if (index < 0) {
+                            obj.id = id;
+                            obj.name = $(this).text();
+                            arrAdd.push(obj);
+                        }
+                        nowId.push(id);
+                    });
+                    $.each(defaultId, function (i, item) {
+                        var id = item;
+                        var obj = {};
+                        var index = nowId.indexOf(id);
+                        if (index < 0) {
+                            obj.id = id;
+                            obj.name = defaultData[i].name;
+                            arrDel.push(obj);
+                        }
+                    });
+                    var result = {
+                        "addList": arrAdd,
+                        "delList": arrDel
+                    }
+                    return result;
+                }
+            };
+
+            var initLeftView = function (obj, setting) {
+                treeDOM1 = $.fn.zTree.init($('#treeDemoL'), setting, obj);
+            }
+
+            var initRightView = function (obj) {
+                $.each(obj, function (i, item) {
+                    $("#muls-select").append("<option value='" + item.id + "'>" + item.name +
+                        "</option>");
+                });
+            }
+
+            $.fn.zbMulSelect = function (options) {
+
+                if (methods[options]) {
+                    return methods[options].apply(this, Array.prototype.slice.call(arguments, 1));
+                } else if (typeof options === 'object' || !options) {
+
+                    var $this = $(this);
+
+                    var defaults = {
+                        initDataL: [],
+                        initDataR: []
+                    };
+
+                    var opts = $.extend(defaults, options);
+
+                    defaultData = opts.initDataR;
+
+                    return this.each(function () {
+
+                        initLeftView(opts.initDataL, setting);
+
+                        if (opts.initDataR) {
+                            if (opts.initDataR.length > 0) {
+                                initRightView(opts.initDataR);
+                            }
+                        }
+
+                        $("#addtoR").click(function () {
+                            doAddToR();
+                        });
+
+                        $("#removeL").click(function () {
+                            doRemoveToL();
+                        });
+
+                        $("#removeAll").click(function () {
+                            $("#muls-select").empty();
+                        });
+
+                        $("#addAll").click(function () {
+                            $("#muls-select").empty();
+                            $.each(opts.initDataL, function (i, item) {
+                                if (item.isParent) {
+                                    return;
+                                }
+                                $("#muls-select").append("<option value='" + item.id +
+                                    "'>" + item.name + "</option>");
+                            });
+                        });
+
+                    });
+                } else {
+                    $.error('Method ' + options + ' does not exist on jQuery.MyTest');
+                }
+            }
+
+            function doAddToR() {
+                var nodes = treeDOM1.getSelectedNodes(true);
+                var sum = $("#muls-select option").size();
+                $.each(nodes, function (i, item) {
+                    if (item.children) {
+                        return;
+                    }
+                    if (sum != 0) {
+                        if (checkIsExist(item.id)) {
+                            return;
+                        }
+                    }
+                    $("#muls-select").append("<option value='" + item.id + "'>" + item.name + "</option>");
+                });
+            }
+
+            function doRemoveToL() {
+                $("#muls-select option:selected").each(function () {
+                    $(this).remove();
+                });
+            }
+
+            function checkIsExist(id) {
+                var f = false;
+                $("#muls-select option").each(function () {
+                    if (id == $(this).val()) {
+                        f = true;
+                    }
+                });
+                return f;
+            }
+
+        })(jQuery);
+    </script>
+    <script>
+        var TestData = [{
+                id: "00000000",
+                pId: 0,
+                name: "外部角色",
+                open: true,
+                isParent: true
+            },
+            {
+                id: "00000001",
+                pId: "00000000",
+                name: "私营",
+                open: true,
+                isParent: true
+            },
+            {
+                id: "00000003",
+                pId: "00000001",
+                name: "机构操作员"
+            },
+            {
+                id: "00000004",
+                pId: "00000001",
+                name: "机构运营岗"
+            },
+            {
+                id: "00000002",
+                pId: "00000000",
+                name: "公营",
+                open: true,
+                isParent: true
+            },
+            {
+                id: "00000005",
+                pId: "00000002",
+                name: "机构操作员"
+            },
+            {
+                id: "00000006",
+                pId: "00000002",
+                name: "机构运营岗"
+            },
+            {
+                id: "00000007",
+                pId: 0,
+                name: "内部角色",
+                open: true,
+                isParent: true
+            },
+            {
+                id: "00000008",
+                pId: "00000007",
+                name: "系统管理员"
+            },
+            {
+                id: "00000009",
+                pId: "00000007",
+                name: "系统运维岗"
+            },
+            {
+                id: "00000010",
+                pId: "00000007",
+                name: "系统运营岗"
+            },
+            {
+                id: "00000011",
+                pId: "00000007",
+                name: "1"
+            },
+            {
+                id: "00000012",
+                pId: "00000007",
+                name: "2"
+            },
+            {
+                id: "00000013",
+                pId: "00000007",
+                name: "3"
+            },
+            {
+                id: "00000014",
+                pId: "00000007",
+                name: "4"
+            },
+            {
+                id: "00000015",
+                pId: "00000007",
+                name: "5"
+            },
+            {
+                id: "00000016",
+                pId: "00000007",
+                name: "6"
+            },
+            {
+                id: "00000017",
+                pId: "00000007",
+                name: "7"
+            },
+            {
+                id: "00000018",
+                pId: "00000007",
+                name: "8"
+            },
+            {
+                id: "00000019",
+                pId: "00000007",
+                name: "9"
+            },
+            {
+                id: "00000020",
+                pId: "00000007",
+                name: "20"
+            },
+            {
+                id: "00000021",
+                pId: "00000007",
+                name: "21"
+            }
+        ]
+
+        var TestData2 = [{
+                id: "00000003",
+                name: "机构操作员"
+            },
+            {
+                id: "00000008",
+                name: "系统管理员"
+            }
+        ]
+
+        $(document).ready(function () {
+            $(document).zbMulSelect({
+                initDataL: TestData,
+                initDataR: TestData2,
+            });
+        });
+
+        // 获取右侧数据
+        function getRigthValues() {
+            console.log((JSON.stringify($(document).zbMulSelect('getData'))));
+        }
+        // 获取右侧改变数据
+        function getExchangeValues() {
+            console.log((JSON.stringify($(document).zbMulSelect('getExchange'))));
+        }
+
+        // 向上移动
+        function sortUp(obj) {
+            var targetOptions = document.getElementById("muls-select"); //提取操作的对象集合，也就是需要操作的select
+            if (targetOptions != undefined) {
+                var length = targetOptions.options.length;
+                if (length > 0) {
+
+                    for (index = 0; index < length; index++) {
+                        if (targetOptions.options[index].selected) {
+                            if (index != 0) {
+                                var targetArr = targetOptions.options; //得到当前可操作项的数组
+
+                                var option = new Option();
+                                option.id = targetOptions.options[index - 1].id;
+                                option.name = targetOptions.options[index - 1].name;
+                                option.value = targetOptions.options[index - 1].value;
+                                option.text = targetOptions.options[index - 1].text;
+
+                                targetOptions.options[index - 1].id = targetOptions.options[index].id;
+                                targetOptions.options[index - 1].name = targetOptions.options[index].name;
+                                targetOptions.options[index - 1].value = targetOptions.options[index].value;
+                                targetOptions.options[index - 1].text = targetOptions.options[index].text;
+
+                                targetOptions.options[index] = option;
+
+                                targetOptions.options[index - 1].selected = true;
+
+                                //connectID();connectText();
+                            }
+                        }
+                    }
+                } else {
+                    alert("请先选中一个!");
+                }
+            } else {
+                alert("请先选中一个!");
+            }
+        }
+
+        // 向下移动
+        function sortDown(obj) {
+            var targetOptions = document.getElementById("muls-select"); //提取操作的对象集合，也就是需要操作的select
+            if (targetOptions != undefined) {
+
+                var length = targetOptions.options.length;
+
+                if (length > 0) {
+                    for (index = 0; index < length; index++) {
+                        if (targetOptions.options[index].selected) {
+                            if (index != length - 1) {
+                                var targetArr = targetOptions.options; //得到当前可操作项的数组
+
+                                var option = new Option();
+                                option.id = targetOptions.options[index + 1].id;
+                                option.name = targetOptions.options[index + 1].name;
+                                option.value = targetOptions.options[index + 1].value;
+                                option.text = targetOptions.options[index + 1].text;
+                                //option=targetOptions.options[index+1];
+
+                                targetOptions.options[index + 1].id = targetOptions.options[index].id;
+                                targetOptions.options[index + 1].name = targetOptions.options[index].name;
+                                targetOptions.options[index + 1].value = targetOptions.options[index].value;
+                                targetOptions.options[index + 1].text = targetOptions.options[index].text;
+                                targetOptions.options[index] = option;
+                                targetOptions.options[index + 1].selected = true;
+                                break;
+                            }
+                        }
+                    }
+
+                } else {
+                    alert("请先选中一个!");
+                }
+
+            } else {
+                alert("请先选中一个!");
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://cdn.bootcss.com/zui/1.9.1/css/zui.css" rel="stylesheet">
+</head>
+
+<body>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+
+    <div class="container-fixed-xs">
+        <button id="btn" class="btn" type="button"><i class="icon icon-check"></i>按钮</button>
+    </div>
+    <script>
+        $("#btn i").click(function () {
+            if ($(this).hasClass("icon-check")) {
+                $(this).removeClass("icon-check");
+                $(this).addClass("icon-times");
+                console.log("对");
+            } else {
+                $(this).addClass("icon-check");
+                console.log("错");
+            }
+        });
+    </script>
+</body>
+
+</html>

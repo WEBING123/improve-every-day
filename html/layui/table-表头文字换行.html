@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../frame/layui/css/layui.css">
+    <style>
+        /* 表格文字换行 */
+        .layui-table-cell {
+            height: auto;
+            overflow: visible;
+            text-overflow: inherit;
+            white-space: normal;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layui-container">
+        <table class="layui-table" id="table" lay-filter="table"></table>
+    </div>
+    <script src="../../frame/layui/layui.js"></script>
+    <script>
+        layui.use(['form', 'table'], function () {
+            var form = layui.form;
+            var table = layui.table;
+            form.render();
+
+            table.render({
+                elem: '#table',
+                url: "../../data/layuiTable.json",
+                cols: [
+                    [{
+                            field: 'id',
+                            title: 'ID',
+                            rowspan: 2
+                        }, {
+                            field: 'username',
+                            title: '用户名用户名用户名用户名用户名用户名用户名用户名用户名',
+                            rowspan: 2
+                        }, {
+                            field: "sex",
+                            title: '性别',
+                            rowspan: 2
+                        }, {
+                            field: 'city',
+                            title: '城市',
+                            rowspan: 2
+                        }, {
+                            field: 'classify',
+                            title: '职业',
+                            rowspan: 2
+                        },
+                        {
+                            field: "sign",
+                            title: '签名',
+                            rowspan: 2
+                        }
+                    ]
+                ],
+                even: true,
+                page: false
+            })
+
+        })
+    </script>
+</body>
+
+</html>

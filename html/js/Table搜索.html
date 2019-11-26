@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://cdn.bootcss.com/zui/1.9.1/css/zui.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="input-group">
+            <div class="input-control search-box search-box-circle has-icon-left has-icon-right search-example" id="">
+                <input id="search" type="search" class="form-control search-input" placeholder="搜索">
+                <label for="" class="input-control-icon-left search-icon"><i class="icon icon-search"></i></label>
+            </div>
+            <span class="input-group-btn" id="searchBtn">
+                <button class="btn btn-primary" type="button">搜索</button>
+            </span>
+        </div>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>digest</th>
+                    <th>ptime</th>
+                    <th>source</th>
+                    <th>title</th>
+                </tr>
+            </thead>
+            <tbody id="newsTable">
+
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/zui/1.9.1/js/zui.js"></script>
+
+    <script>
+        var newsTable = document.getElementById("newsTable");
+        var searchBtn = document.getElementById('searchBtn');
+
+        $.ajax({
+            type: "get",
+            url: "https://www.apiopen.top/journalismApi",
+            dataType: "json",
+            success: function (result) {
+                render(result)
+            },
+            error: function (date) {}
+        });
+
+        // 渲染表格
+        function render(result) {
+            var newsJSON = result;
+            // console.log(newsJSON);
+
+            var dy = result.data.dy;
+            // console.log(dy);
+
+            for (let i = 0; i < dy.length; i++) {
+                newsTable.innerHTML +=
+                    '<tr>' +
+                    '<td>' + dy[i].digest + '</td>' +
+                    '<td>' + dy[i].ptime + '</td>' +
+                    '<td>' + dy[i].source + '</td>' +
+                    '<td>' + dy[i].title + '</td>' +
+                    '</tr>'
+            }
+        }
+
+        // 点击搜索按钮
+        $("#searchBtn").click(function (e) {
+            $('table tbody tr').hide()
+                .filter(":contains('" + ($('#search').val()) + "')")
+                .show();
+        });
+
+        // filter() 方法返回符合一定条件的元素。
+        // 该方法让您规定一个条件。 不符合条件的元素将从选择中移除， 符合条件的元素将被返回。
+        // 该方法通常用于缩小在被选元素组合中搜索元素的范围。
+
+        // :contains 选择器选取包含指定字符串的元素。
+        // 该字符串可以是直接包含在元素中的文本，或者被包含于子元素中。
+        // 经常与其他元素/选择器一起使用，来选择指定的组中包含指定文本的元素。
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .circle-progress-bar {
+            width: 190px;
+            height: 190px;
+            margin: 45px auto;
+        }
+
+        .circle-svg {
+            transform: translateX(109px) rotate(-230deg) translateY(-109px);
+        }
+
+        .circle-svg-bottom,
+        .circle-svg-top {
+            stroke-dasharray: calc(3.141592653589793 * (2 * 75));
+            transition: stroke-dashoffset 1200ms cubic-bezier(.99, .01, .62, .94);
+        }
+
+        .circle-svg-bottom {
+            stroke-dashoffset: 105;
+        }
+
+        .circle-svg-top {
+            stroke-dashoffset: calc(3.141592653589793 * (2 * 75));
+        }
+
+        .circle-progress-bar-text {
+            margin-top: -60%;
+            text-align: center;
+        }
+
+        .circle-progress-bar-point {
+            font-size: 30px;
+            color: #7E46AA;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="circle-progress-bar">
+        <svg width="100%" height="100%" viewBox="0 0 160 142" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <g class="circle-svg">
+                <circle class="circle-svg-bottom" r="75" cy="80" cx="80" fill="none" stroke-width="9.375"
+                    stroke="#F3F6F7" stroke-linejoin="round" stroke-linecap="round" />
+                <circle class="circle-svg-top" r="75" cy="80" cx="80" fill="none" id="progressBar" stroke-width="9.375"
+                    stroke="#7E46AA" stroke-linejoin="round" stroke-linecap="round" />
+            </g>
+        </svg>
+        <div class="circle-progress-bar-text">
+            <div class="circle-progress-bar-point" id="progressValue"></div>
+            <div>Points</div>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function () {
+            updateProgress(66, 100);
+        }
+
+        var updateProgress = function (progress, fullProgress) {
+            document.getElementById('progressValue').innerText = progress;
+            document.getElementById('progressBar').style.strokeDashoffset = calcDashOffset(progress, fullProgress);
+        }
+
+        var calcDashOffset = function (progress, fullProgress) {
+
+            const radius = 75; // 圆环半径
+            const missCircle = 105; // 缺的圆弧周长
+
+            if (progress > fullProgress) {
+                return missCircle;
+            } else {
+                const circumference = Math.PI * (2 * radius);
+                return circumference - (progress / fullProgress) * (circumference - missCircle);
+            }
+        }
+    </script>
+</body>
+
+</html>

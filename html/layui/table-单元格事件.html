@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../frame/layui/css/layui.css">
+</head>
+
+<body>
+    <div class="layui-container">
+        <table class="layui-table" id="table" lay-filter="table"></table>
+    </div>
+    <script src="../../frame/layui/layui.js"></script>
+    <script>
+        layui.use(['form', 'table'], function () {
+            var form = layui.form;
+            var table = layui.table;
+            form.render();
+
+            table.render({
+                elem: '#table',
+                url: "../../data/layuiTable.json",
+                cols: [
+                    [{
+                            field: '',
+                            title: '用户',
+                            colspan: 2
+                        }, {
+                            field: "sex",
+                            title: '性别(单元格可点击)',
+                            rowspan: 2,
+                            event: 'cellClick'
+                        }, {
+                            field: '',
+                            title: '工作',
+                            colspan: 2
+                        },
+                        {
+                            field: "sign",
+                            title: '签名',
+                            rowspan: 2
+                        }
+                    ],
+                    [{
+                        field: 'id',
+                        title: 'ID'
+                    }, {
+                        field: 'username',
+                        title: '用户名'
+                    }, {
+                        field: 'city',
+                        title: '城市'
+                    }, {
+                        field: 'classify',
+                        title: '职业'
+                    }]
+                ],
+                even: true,
+                page: false
+            })
+
+            //监听单元格事件
+            table.on('tool(table)', function (obj) {
+                var data = obj.data;
+                if (obj.event === 'cellClick') {
+                    layer.prompt({
+                        formType: 2,
+                        title: '监听单元格事件'
+                    }, function (value, index) {
+                        layer.close(index);
+                    });
+                }
+            });
+
+        })
+    </script>
+</body>
+
+</html>

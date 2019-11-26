@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://cdn.bootcss.com/zui/1.9.1/css/zui.css" rel="stylesheet">
+    <style>
+        a, a:hover {
+            text-decoration: none;
+        }
+        .container {
+            position: relative;
+        }
+
+        .catListTitle {
+            margin: 10px 0;
+            padding: 5px;
+            background-color: #fff;
+            border: 1px solid #55895B;
+            border-left-width: 5px;
+            border-right-width: 5px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 700;
+            color: #000;
+        }
+
+        .dayTitle {
+            background-color: #eb374b;
+            display: block;
+            top: 70px;
+            left: 0;
+            min-width: 140px;
+            padding: 6px 10px;
+            position: absolute;
+            text-align: center;
+        }
+
+        .dayTitle::before {
+            border-color: #eb374b blue yellow transparent;
+            border-style: solid;
+            border-width: 20px 0 0 40px;
+            content: " ";
+            display: block;
+            height: 0;
+            left: 0;
+            position: absolute;
+            top: 100%;
+            width: 0;
+        }
+
+        .dayTitle a {
+            color: #fff;
+            font-family: Arvo, Cambria, Georgia, Times, serif;
+            font-size: 18px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h3 class="catListTitle">随笔分类
+            <span style="font-size:11px;font-weight:normal">(60)</span>
+        </h3>
+
+        <div class="dayTitle">
+            <a href="javascript:void(0);">2019年6月27日</a>
+        </div>
+    </div>
+</body>
+
+</html>

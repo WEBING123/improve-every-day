@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../frame/layui/css/layui.css">
+    <link rel="stylesheet" href="../../frame/layui/formSelects/formSelects-v4.css">
+    <!-- <link rel="stylesheet" href="../../frame/Bootswatch/materia.css"> -->
+    <style>
+        body {
+            padding-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layui-container">
+        <form class="layui-form layui-form-pane" action="">
+            <!-- 远程搜索-城市分组 -->
+            <div class="layui-form-item">
+                <label class="layui-form-label">行政区划</label>
+                <div class="layui-input-block">
+                    <select name="city" xm-select="selectCity" xm-select-height="50px"
+                        xm-select-search="../../data/cityGroup.json">
+                    </select>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+</body>
+<script src="../../frame/layui/layui.js"></script>
+<script src="../../frame/layui/formSelects/formSelects-v4.js"></script>
+
+<script>
+    // 说明
+    // xm-select-height="" 固定高度
+    // xm-select-search="" 模糊搜索 
+</script>
+
+<!-- 远程搜索-城市分组 开始 -->
+<script>
+    layui.config({
+        base: '../../frame/layui/formSelects/'
+    }).extend({
+        formSelects: 'formSelects-v4'
+    });
+    layui.use(['jquery', 'formSelects'], function () {
+        var formSelects = layui.formSelects;
+    });
+</script>
+<!-- 远程搜索-城市分组 结束 -->
+
+<!-- --------------------------------------------------分割线-------------------------------------------------- -->
+
+</html>

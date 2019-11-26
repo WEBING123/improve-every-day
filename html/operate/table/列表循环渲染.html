@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://bootswatch.com/4/cerulean/bootstrap.min.css">
+    <style>
+    </style>
+</head>
+
+<body class="container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">物流时间</th>
+                <th scope="col">物流描述</th>
+            </tr>
+        </thead>
+        <tbody id="con">
+
+
+        </tbody>
+    </table>
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        var list = [{
+                "datetime": "2016-06-15 21:44:04",
+                /* 物流事件发生的时间 */
+                "remark": "离开郴州市 发往长沙市【郴州市】",
+                /* 物流事件的描述 */
+                "zone": "" /* 快件当时所在区域，由于快递公司升级，现大多数快递不提供此信息 */
+            },
+            {
+                "datetime": "2016-06-15 21:46:45",
+                "remark": "郴州市邮政速递物流公司国际快件监管中心已收件（揽投员姓名：侯云,联系电话:）【郴州市】",
+                "zone": ""
+            },
+            {
+                "datetime": "2016-06-16 12:04:00",
+                "remark": "离开长沙市 发往贵阳市（经转）【长沙市】",
+                "zone": ""
+            },
+            {
+                "datetime": "2016-06-17 07:53:00",
+                "remark": "到达贵阳市处理中心（经转）【贵阳市】",
+                "zone": ""
+            },
+            {
+                "datetime": "2016-06-18 07:40:00",
+                "remark": "离开贵阳市 发往毕节地区（经转）【贵阳市】",
+                "zone": ""
+            },
+            {
+                "datetime": "2016-06-18 09:59:00",
+                "remark": "离开贵阳市 发往下一城市（经转）【贵阳市】",
+                "zone": ""
+            },
+            {
+                "datetime": "2016-06-18 12:01:00",
+                "remark": "到达  纳雍县 处理中心【毕节地区】",
+                "zone": ""
+            },
+            {
+                "datetime": "2016-06-18 17:34:00",
+                "remark": "离开纳雍县 发往纳雍县阳长邮政支局【毕节地区】",
+                "zone": ""
+            },
+            {
+                "datetime": "2016-06-20 17:55:00",
+                "remark": "投递并签收，签收人：单位收发章 *【毕节地区】",
+                "zone": ""
+            }
+        ]
+
+        console.log(list);
+
+        var con = document.getElementById("con");
+
+        for (var i = 0; i < list.length; i++) {
+            con.innerHTML += '<tr class="table-primary">' +
+                '<td>' + list[i].datetime + '</td>' +
+                '<td>' + list[i].remark + '</td>' +
+                '</tr>'
+        }
+    </script>
+</body>
+
+</html>

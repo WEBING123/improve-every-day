@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://webing123.github.io/Blog/css/webing.css">
+    <style>
+        .loading::after {
+            content: '\2026';
+            overflow: hidden;
+            display: inline-block;
+            vertical-align: bottom;
+            animation: ellipsis 2s infinite;
+        }
+
+        @keyframes ellipsis {
+            from {
+                width: 2px;
+            }
+
+            to {
+                width: 17px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h3 class="loading HV-center">动态加载</h3>
+</body>
+</html>

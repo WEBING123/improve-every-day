@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../frame/layui/css/layui.css">
+    <link rel="stylesheet" href="../../frame/layui/eleTree/eleTree.css">
+    <!-- <link rel="stylesheet" href="../../frame/Bootswatch/materia.css"> -->
+    <style>
+        body {
+            padding-top: 50px;
+        }
+
+        .layui-form-pane .layui-form-label {
+            width: 150px;
+        }
+
+        .layui-form-pane .layui-input-block {
+            margin-left: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layui-container">
+        <form class="layui-form layui-form-pane" action="">
+            <!-- <div class="layui-form-item">
+                <label class="layui-form-label">行政区划(单选)</label>
+                <div class="layui-input-block">
+                    <input title="" type="text" name="area" required lay-verify="required" placeholder="点击选择" readonly
+                        autocomplete="off" class="layui-input">
+                    <div class="eleTree eleArea" lay-filter="dataArea"></div>
+                </div>
+            </div> -->
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">行政区划(多选)</label>
+                <div class="layui-input-block">
+                    <input title="" type="text" name="area" required lay-verify="required" placeholder="点击选择" readonly
+                        autocomplete="off" class="layui-input">
+                    <div class="eleTree eleArea" lay-filter="dataArea"></div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+</body>
+<script src="../../frame/layui/layui.js"></script>
+<!-- 行政区划(单选) -->
+<!-- <script>
+    layui.config({
+        base: "../../frame/layui/lay/eleTreeModules/"
+    }).use(['jquery', 'table', 'eleTree', 'code', 'form', 'slider'], function () {
+        var $ = layui.jquery;
+        var eleTree = layui.eleTree;
+        var table = layui.table;
+        var code = layui.code;
+        var form = layui.form;
+        var slider = layui.slider;
+
+        var elArea;
+        $("[name='area']").on("click", function (e) {
+            e.stopPropagation();
+            if (!elArea) {
+                elArea = eleTree.render({
+                    elem: '.eleArea',
+                    url: "../../data/eleTree.json",
+                    defaultExpandAll: false,
+                    expandOnClickNode: false,
+                    highlightCurrent: true
+                });
+            }
+            $(".eleArea").toggle();
+        })
+        eleTree.on("nodeClick(dataArea)", function (d) {
+            $("[name='area']").val(d.data.currentData.label)
+            $(".eleArea").hide();
+        })
+        $(document).on("click", function () {
+            $(".eleArea").hide();
+        })
+    });
+</script> -->
+
+<!-- 行政区划(多选) -->
+<script>
+    layui.config({
+        base: "../../frame/layui/lay/eleTreeModules/"
+    }).use(['jquery', 'table', 'eleTree', 'code', 'form', 'slider'], function () {
+        var $ = layui.jquery;
+        var eleTree = layui.eleTree;
+        var table = layui.table;
+        var code = layui.code;
+        var form = layui.form;
+        var slider = layui.slider;
+
+        var elArea;
+        $("[name='area']").on("click", function (e) {
+            e.stopPropagation();
+            if (!elArea) {
+                elArea = eleTree.render({
+                    elem: '.eleArea',
+                    url: "../../data/eleTree.json",
+                    renderAfterExpand: false,
+                    defaultExpandAll: false,
+                    expandOnClickNode: false,
+                    highlightCurrent: true,
+                    showCheckbox: true
+                });
+            }
+            $(".eleArea").toggle();
+        })
+        eleTree.on("nodeChecked(dataArea)", function (d) {
+
+            // 获取选中的节点 Array
+            var checkedArray = elArea.getChecked(true, false);
+            // console.log(checkedArray);
+
+            // for (var i = 0; i < checkedArray.length; i++) {
+            //     var obj = checkedArray[i];
+            //     for (var k in obj) {
+            //         // 一一显示
+            //         console.log(k + ": " + obj[k]);
+            //     }
+            // }
+
+            // 方法一
+            // var arrNew = new Array();
+            // for (let i of checkedArray) {
+            //     arrNew.push(i.label)
+            // }
+            // console.log(arrNew);
+            // $("[name='area']").val(arrNew);
+
+            // 方法二
+            var checkedResult = '';
+            $(checkedArray).each(function (i, v) {
+                checkedResult += v.label + ',';
+                console.log(checkedResult);
+            })
+            $("[name='area']").val(checkedResult);
+
+            // $(".eleArea").hide();
+
+        })
+        $(document).on("click", function () {
+            $(".eleArea").hide();
+        })
+    });
+</script>
+
+<!-- --------------------------------------------------分割线-------------------------------------------------- -->
+
+</html>

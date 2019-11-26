@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <img src="https://b-gold-cdn.xitu.io/v3/static/img/logo.a7995ad.sv" alt="">
+
+        <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+        <script>
+            $('img').on('error', function () {
+                if (!$(this).hasClass('broken-image')) {
+                    $(this).prop('src','https://cdn.segmentfault.com/v-5cc2cd8e/global/img/logo-b.svg').addClass('broken-image');
+                }
+            });
+        </script>
+</body>
+</html>
