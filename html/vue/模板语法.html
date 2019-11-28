@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="vue-app">
+        <a v-bind:href="url" target="_blank">Vue.js 教程</a>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#vue-app",
+            data: {
+                url: "https://cn.vuejs.org/v2/guide/"
+            }
+        })
+    </script>
+</body>
+
+</html>
