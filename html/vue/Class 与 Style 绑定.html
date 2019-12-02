@@ -14,21 +14,28 @@
         .bg {
             background-color: #000000;
         }
+        .fw-bold {
+            font-weight: bold;
+        }
     </style>
 </head>
 
 <body>
     <div id="vue-app">
-        <a :class="[color, bg]" :href="url" target="_blank">Vue.js 教程</a>
+        <a :class="[color, bg]" class="fw-bold" :href="url" target="_blank">积善之家，必有余庆，留余庆，留余庆，忽遇恩人；</a>
+
+        <div :style="{color: activeColor, fontSize: fontSize + 'px', border: '1px solid'}">幸娘亲，幸娘亲，积得阴功。</div>
     </div>
 
     <script>
         new Vue({
             el: "#vue-app",
             data: {
-                url: "https://cn.vuejs.org/v2/guide/",
+                url: "https://book.qidian.com/info/114559",
                 color: "blue",
-                bg: "bg"
+                bg: "bg",
+                activeColor: "red",
+                fontSize: 18
             }
         })
     </script>
