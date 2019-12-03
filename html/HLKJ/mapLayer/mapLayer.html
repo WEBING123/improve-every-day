@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body id="iframe_tab">
+    <div class="onmap" id="onmap" style="width:625px;">
+
+        <div class="onmap_con">
+            <div class="onmap_nav q_onmap clearfix">
+                <ul id="mapdetailul">
+                    <li onclick="loadsq()"><i class="mapicon micon1"></i>水情</li>
+                    <li onclick="loadylzd()"><i class="mapicon micon6"></i>区域雨情</li>
+                    <li onclick="loadgq()"><i class="mapicon micon2"></i>工情</li>
+                    <li onclick="loadsp()"><i class="mapicon micon3"></i>视频</li>
+                    <li onclick="draw()"><i class="mapicon micon7"></i>剖面图</li>
+                    <li onclick="loadsanwei()"><i class="mapicon micon8"></i>720°全景</li>
+                    <li><i class="mapicon micon4"></i>简介</li>
+                </ul>
+            </div>
+            <div class="mapdetail_con" id="mapdetail_con" style="overflow:auto;">
+                <!-- ---------------------------------- 水情 ---------------------------------- -->
+                <div class="mapdetail">
+                    <div class="qs q_s" style="display: none"><span class="pull-left">趋势：</span><a href="#"
+                            class="text-bg2">涨</a></div>
+                    <a id="showmorebutton1" href="javascript:parent.showdetail_more2(0)"
+                        class="more_btn2 detail_more">更多</a>
+                    <div id="sqqx" style="height:200px;"></div>
+                    <div class="sj_con">
+                        <span id="syshuiwei">上游水位：<i class="btn btn-green btn-xs"></i></span>
+                        <span id="xyshuiwei">下游水位：<i class="btn btn-green btn-xs"></i></span>
+                        <!--<span id="zcshuiwei">正常水位：<i class="btn btn-default btn-xs">3m</i></span>-->
+                        <span id="jjshuiwei">警戒水位：<i class="btn btn-yellow btn-xs"></i></span>
+                        <span id="swtm">10-08 16:55</span>
+                    </div>
+                    <div class="sj_tab">
+                        <table width="100%" class="sj_tab_con">
+                            <tr>
+                                <th style="width: 35px;"></th>
+                                <th colspan="2">上游(m)</th>
+                                <th colspan="2">下游(m)</th>
+                                <th style="width: 35px;"></th>
+                                <th colspan="2">上游(m)</th>
+                                <th colspan="2">下游(m)</th>
+                            </tr>
+                            <tr>
+                                <th>今日最高</th>
+                                <td id="jrmax"></td>
+                                <td id="jrmaxtm"></td>
+                                <td id="xjrmax"></td>
+                                <td id="xjrmaxtm"></td>
+                                <th>今日最低</th>
+                                <td id="jrmin"></td>
+                                <td id="jrmintm"></td>
+                                <td id="xjrmin"></td>
+                                <td id="xjrmintm"></td>
+                            </tr>
+                            <tr>
+                                <th>历史最高</th>
+                                <td id="hismax"></td>
+                                <td id="hismaxtm"></td>
+                                <td id="xhismax"></td>
+                                <td id="xhismaxtm"></td>
+                                <th>历史最低</th>
+                                <td id="hismin"></td>
+                                <td id="hismintm"></td>
+                                <td id="xhismin"></td>
+                                <td id="xhismintm"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <!--雨情-->
+                <div class="mapdetail">
+                    <a id="showmorebutton2" href="javascript:parent.showdetail_more()"
+                        class="more_btn2 detail_more">更多</a>
+                    <div id="chart2" style="height:200px;"></div>
+                    <div class="sj_tab">
+                        <div class="sj_title clearfix">
+                            <strong class="pull-left sj_t"><i class=" wi wi-night-sprinkle"></i>实时降水数据</strong>
+                            <span class="pull-right" id="yldatatime2">数据时间：2018-10-9 16:51</span>
+                        </div>
+                        <table width="100%" class="sj_tab_con">
+                            <tr>
+                                <th>实时降水</th>
+                                <td><span id="drp2"></span></td>
+                                <th>近3小时</th>
+                                <td><span id="yl3hour2"></span></td>
+                                <th>近6小时</th>
+                                <td><span id="yl6hour2"></span></td>
+                            </tr>
+                            <tr>
+                                <th>近12小时</th>
+                                <td><span id="yl12hour2"></span></td>
+                                <th>今日</th>
+                                <td><span id="dyp2"></span></td>
+                                <th>近48小时</th>
+                                <td><span id="yl48hour2"></span></td>
+                            </tr>
+                        </table>
+                        <div class="sj_title clearfix">
+                            <strong class="pull-left sj_t"><i class=" wi wi-night-sprinkle"></i>天气情况</strong>
+                        </div>
+                        <table width="100%" class="sj_tab_con">
+                            <tr>
+                                <th>今日温度</th>
+                                <td><span id="jrwd2"></span></td>
+                                <th>最高温度</th>
+                                <td><span id="zgwd2"></span></td>
+                                <th>最低温度</th>
+                                <td><span id="zdwd2"></span></td>
+                            </tr>
+                            <tr>
+                                <th>风向</th>
+                                <td colspan="3" class="text-left"><span id="fx2" style="margin-left: 18px;"></span></td>
+                                <th>风速</th>
+                                <td><span id="fs2"></span></td>
+                            </tr>
+                            <tr>
+                                <th>空气指数</th>
+                                <td><span id="kqzs2"></span></td>
+                                <th>空气质量</th>
+                                <td><span id="kq2"></span></td>
+                                <th>湿度</th>
+                                <td><span id="sd2"></span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <!--工情-->
+                <div class="mapdetail" id="gq_xq">
+                    <a id="showmorebutton3" href="javascript:parent.showdetail_more2(2)"
+                        class="more_btn2 detail_more">更多</a>
+                    <!--<a href="javascript:parent.showyckz()" class="yckz_btn y_m_s"><i class=" md-settings-input-antenna"></i>远程控制</a>-->
+                    <div id="chart3" style="height:200px;"></div>
+                    <div class="sj_tab">
+                        <table width="100%" class="sj_tab_con" id="zhementable"></table>
+                    </div>
+
+                    <div class="sj_tab" id="bengjidiv">
+                        <div class="sj_title clearfix">
+                            <strong class="pull-left sj_t"><i class="fa fa-tachometer"></i>泵机状态</strong>
+                            <span class="pull-right" style="line-height:24px; padding-left:10px;"
+                                id='bengjitime'></span>
+                        </div>
+
+                        <div class="beng_box" id="bengjitable"></div>
+                    </div>
+                </div>
+                <!--视频-->
+                <div class="mapdetail" style="height: 385px">
+                    <iframe id="spiframes" frameborder="0" name="video" scrolling="no"
+                        style="width: 100%; height: 100%; visibility: inherit; z-index: 1;"></iframe>
+                </div>
+                <div class="mapdetail">
+                    <div label="剖面图" height="364" style="background-color: rgb(255, 255, 255);" id="pmt1" class="hide">
+                        <div style="position: relative; width: 600px; height: 300px;">
+                            <img src="images/bg.jpg" id="bgimg" style="display: none;">
+                            <img src="images/zm-p.png" id="zmpimg" style="display: none;">
+
+                            <img src="images/bg.jpg" style="position: absolute;">
+                            <div style="position: relative; height: 300px; top: 0px; left: 0px; margin: 0px;">
+                                <img src="images/flow.gif" id="sygif"
+                                    style="position: absolute; width: 282px; height: 137.572px; left: 0px; bottom: 0px; overflow: hidden;">
+                                <img src="images/flow.gif" id="xygif"
+                                    style="position: absolute; width: 282px; height: 112.6887px; right: 0px; bottom: 0px; overflow: hidden;">
+                                <img src="images/zm-p.png" style="position: absolute; left: 272px; bottom: 0px;">
+                                <canvas id="myCanvas" width="600" height="300"
+                                    style="position: absolute; left: 0px; bottom: 0px;"></canvas>
+                            </div>
+                        </div>
+                        <div style="margin:10px 0">
+                            <span style="line-height:24px;" id="pmtdatetime">数据时间：2018-10-24 17:22</span>
+                            <table width="100%" class="sj_tab_con">
+                                <tr>
+                                    <th>上游水位</th>
+                                    <td><span id="upsw">0</span>m</td>
+                                    <!--<th>正常水位</th>-->
+                                    <!--<td><span id="upzcsw">0</span>m</td>-->
+                                    <th>警戒水位</th>
+                                    <td><span id="upjjsw">0</span>m</td>
+                                </tr>
+                                <tr>
+                                    <th>下游水位</th>
+                                    <td><span id="dwsw">0</span>m</td>
+                                    <!--<th>正常水位</th>-->
+                                    <!--<td><span id="dwzcsw">0</span>m</td>-->
+                                    <th>警戒水位</th>
+                                    <td><span id="dwjjsw">0</span>m</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div label="剖面图" height="364" style="background-color: rgb(255, 255, 255);" id="pmt2" class="hide">
+                        <div style="position: relative; width: 600px; height: 300px;">
+
+                            <img src="images/bg.jpg" style="position: absolute;">
+                            <div
+                                style="position: absolute; top: 0px; left: 0px; font-size: 13px; width: 600px; height: 300px;">
+                                <img src="images/flow.gif" id="sygif2"
+                                    style="position: absolute; width: 600px; height: 93.4694px; left: 0px; bottom: 0px; overflow: hidden;">
+                                <img src="images/db-p.png" style="position: absolute; left: 0px; bottom: 0px;">
+                                <div style="position: absolute; left: 0px; top: 0px; width: 600px; text-align: center;">
+                                </div>
+                                <canvas id="myCanvas2" width="600" height="300"
+                                    style="position: absolute; left: 0px; bottom: 0px;"></canvas>
+                            </div>
+                        </div>
+                        <div style="margin:10px 0">
+                            <span style="line-height:24px;" id="pmtdatetime">数据时间：2018-10-24 17:22</span>
+                            <table width="100%" class="sj_tab_con">
+                                <tr>
+                                    <th>内河水位</th>
+                                    <td><span id="upsw2">0</span>m</td>
+                                    <!--<th>正常水位</th>-->
+                                    <!--<td><span id="upzcsw2">0</span>m</td>-->
+                                    <th>警戒水位</th>
+                                    <td><span id="upjjsw2">0</span>m</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="mapdetail" style="height:388px">
+                    <a href="" id="sanweia" target="_blank" class="tf_qp" style="top:60px">全屏</a>
+                    <iframe id="sanweiiframe" width="100%" height="100%" style="border:none"></iframe>
+                </div>
+                <!--简介-->
+                <div class="mapdetail">
+                    <div class="zz-img" id="zdimg"
+                        style="width:100%; height:250px;background:url(images/zz-img.jpg) center no-repeat; background-size:100% auto;">
+                    </div>
+                    <div class="zz-con">
+                        <p id="zdxx">
+                            鲥鱼港闸位于江阴城北鲥鱼港河口，北距长江164米，建成于2000年8月，建筑物防洪标准按洪水重现期100年一遇设计，200年一遇校核。设计最大排涝流量：54.03立方米/秒，设计引水流量：30.48立方米/秒。
+                        </p>
+                        <p>设计排涝流量：3353立方米/秒，新河闸单孔净宽8米，闸墩顶高程900米，闸身采用钢筋砼U型结构，闸底板长18米，面高程0.5米，上下游消力池长度分别为16、13米，内河侧护坡、护底53米，长江侧护坡、护底37米。
+                        </p>
+                        <p>平面直升式钢闸门下扉门顶高程7.5米，上扉门顶高程8.5米，启闭机为2*16吨绳鼓式启闭机。上游侧交通桥面宽8米，设计荷载汽-20。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script><!--左侧高度100%，滚动-->
+    <script src="js/plugins/layer/layer.min.js"></script>
+    <script src="js/plugins/layer/laydate/laydate.js"></script>
+    <script src="js/hplus.min.js"></script>
+    <script src="js/contabs.min.js"></script>
+    <script src="js/plugins/pace/pace.min.js"></script>
+    <script src="js/plugins/iCheck/icheck.min.js"></script><!--复选框单选框-->
+    <script src="js/echarts.min.js"></script>
+    <script src="js/macarons.js"></script><!--echarts图表主题-->
+    <script src="js/base.js"></script>
+    <script src="js/jquery.SuperSlide.2.1.1.js"></script><!--tab切换-->
+    
+    <script src="js/util/util_config.js"></script>
+    <script src="js/util/util_layui.js"></script>
+    <script src="plugins/layui/layui.js"></script>
+    <script type="text/javascript" src="gq.js"></script>
+    <script type="text/javascript" src="js/st/mybase.js"></script>
+    <script type="text/javascript" src="js/st/gqxinxi.js"></script>
+
+</body>
+
+</html>
