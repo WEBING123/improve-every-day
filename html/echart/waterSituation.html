@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="waterChart" style="height:500px;"></div>
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script src="../../frame/echart/echarts.min.js"></script>
+    <script src="../../frame/echart/macarons.js"></script>
+    <script>
+        // 水情
+        var waterChart = echarts.init(document.getElementById('waterChart'), 'macarons');
+
+        option = {
+            title: {
+                text: '武定门今日降水及水位过程线',
+                x: 'center',
+                textStyle: {
+                    fontSize: 16
+                }
+            },
+            grid: {
+                top: '40',
+                left: '8%',
+                right: '10%'
+            },
+            tooltip: {
+                trigger: 'axis',
+            },
+            calculable: true,
+            legend: {
+                data: ['上游水位', '下游水位', '武定门'],
+                bottom: 0,
+            },
+            xAxis: [{
+                splitLine: {
+                    show: true
+                },
+                splitArea: {
+                    show: false
+                },
+                type: 'category',
+                boundaryGap: false,
+                axisLine: {
+                    onZero: false
+                },
+                data: [
+                    '9-21 0:00', '9-21 1:00', '9-21 2:00', '9-21 3:00', '9-21 4:00', '9-21 5:00',
+                    '9-21 6:00', '9-21 7:00', '9-21 8:00', '9-21 9:00', '9-21 10:00', '9-21 11:00',
+                    '9-21 12:00', '9-21 13:00', '9-21 14:00', '9-21 15:00', '9-21 16:00', '9-21 17:00',
+                    '9-21 18:00', '9-21 19:00', '9-21 20:00', '9-21 21:00', '9-21 22:00', '9-21 23:00',
+                    '9-22 0:00'
+                ]
+            }],
+            yAxis: [{
+                    splitLine: {
+                        show: true
+                    },
+                    splitArea: {
+                        show: false
+                    },
+                    type: 'value',
+                    position: 'left',
+
+                    name: '水位（m）',
+                    axisLabel: {
+                        formatter: '{value}'
+                    }
+                },
+                {
+                    splitLine: {
+                        show: false
+                    },
+                    splitArea: {
+                        show: false
+                    },
+                    type: 'value',
+                    inverse: true,
+                    position: 'right',
+
+                    name: '雨量（mm）',
+                    nameGap: 25,
+                    axisLabel: {
+                        formatter: '{value}',
+                    }
+                }
+            ],
+            series: [{
+                    name: '上游水位',
+                    type: 'line',
+                    lineStyle: {
+                        width: 1
+                    },
+                    markArea: {
+                        silent: true,
+                        data: [
+                            [{
+                                xAxis: '9-21-0:00'
+                            }, {
+                                xAxis: '9-22-0:00'
+                            }]
+                        ]
+                    },
+                    data: [3.26, 3.26, 3.26, 3.26, 3.26, 3.26, 3.26, 3.26, 3.26, 3.26, 3.26, 3.26, 3.26, 3.26,
+                        3.26, 3.26, 3.26, 3.26, 3.26, 3.26, 3.26, 3.26, 3.26, 3.26, 3.26
+                    ]
+                }, {
+                    name: '下游水位',
+                    type: 'line',
+                    lineStyle: {
+                        width: 1
+                    },
+                    markArea: {
+                        silent: true,
+                        data: [
+                            [{
+                                xAxis: '9-21-0:00'
+                            }, {
+                                xAxis: '9-22-0:00'
+                            }]
+                        ]
+                    },
+                    data: [4.26, 4.26, 4.26, 4.26, 4.26, 4.26, 4.26, 4.26, 4.26, 4.26, 4.26, 4.26, 4.26, 4.26,
+                        4.26, 4.26, 4.26, 4.26, 4.26, 4.26, 4.26, 4.26, 4.26, 4.26, 4.26
+                    ]
+                },
+                {
+                    name: '武定门',
+                    type: 'line',
+                    yAxisIndex: 1,
+                    lineStyle: {
+                        width: 1
+                    },
+                    markArea: {
+                        silent: true,
+                        data: [
+                            [{
+                                xAxis: '9-21-0:00'
+                            }, {
+                                xAxis: '9-22-0:00'
+                            }]
+                        ]
+                    },
+                    data: [2.94, 2.94, 2.94, 2.94, 2.94, 2.94, 2.94, 2.94, 2.94, 2.94, 2.94, 2.94, 2.94, 2.94,
+                        2.94, 2.94, 2.94, 2.94, 2.94, 2.94, 2.94, 2.94, 2.94, 2.94, 2.94
+                    ]
+                }
+            ]
+        };
+
+        waterChart.setOption(option, true);
+        waterChart.resize();
+    </script>
+</body>
+
+</html>
