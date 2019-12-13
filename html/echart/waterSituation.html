@@ -68,7 +68,6 @@
                     },
                     type: 'value',
                     position: 'left',
-
                     name: '水位（m）',
                     axisLabel: {
                         formatter: '{value}'
@@ -84,7 +83,6 @@
                     type: 'value',
                     inverse: true,
                     position: 'right',
-
                     name: '雨量（mm）',
                     nameGap: 25,
                     axisLabel: {
@@ -108,9 +106,20 @@
                             }]
                         ]
                     },
-                    data: [3.26, 3.26, 3.26, 3.26, 3.26, 3.26, 3.26, 3.26, 3.26, 3.26, 3.26, 3.26, 3.26, 3.26,
-                        3.26, 3.26, 3.26, 3.26, 3.26, 3.26, 3.26, 3.26, 3.26, 3.26, 3.26
-                    ]
+                    areaStyle: {
+                        normal: {
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                    offset: 0,
+                                    color: '#eb64fb'
+                                },
+                                {
+                                    offset: 1,
+                                    color: '#3fbbff0d'
+                                }
+                            ], false),
+                        }
+                    },
+                    data: [393, 438, 485, 631, 689, 824, 987, 1000, 1100, 1200]
                 }, {
                     name: '下游水位',
                     type: 'line',
