@@ -20,7 +20,7 @@
 
         option = {
             title: {
-                text: '武定门今日降水及水位过程线',
+                text: '折线图渐变色',
                 x: 'center',
                 textStyle: {
                     fontSize: 16
@@ -36,7 +36,7 @@
             },
             calculable: true,
             legend: {
-                data: ['上游水位', '下游水位', '武定门'],
+                data: ['上游水位'],
                 bottom: 0,
             },
             xAxis: [{
@@ -72,26 +72,10 @@
                     axisLabel: {
                         formatter: '{value}'
                     }
-                },
-                {
-                    splitLine: {
-                        show: false
-                    },
-                    splitArea: {
-                        show: false
-                    },
-                    type: 'value',
-                    inverse: true,
-                    position: 'right',
-                    name: '雨量（mm）',
-                    nameGap: 25,
-                    axisLabel: {
-                        formatter: '{value}',
-                    }
                 }
             ],
             series: [{
-                    name: '上游水位',
+                    name: '水位',
                     type: 'line',
                     lineStyle: {
                         width: 1
@@ -120,46 +104,6 @@
                         }
                     },
                     data: [393, 438, 485, 631, 689, 824, 987, 1000, 1100, 1200]
-                }, {
-                    name: '下游水位',
-                    type: 'line',
-                    lineStyle: {
-                        width: 1
-                    },
-                    markArea: {
-                        silent: true,
-                        data: [
-                            [{
-                                xAxis: '9-21-0:00'
-                            }, {
-                                xAxis: '9-22-0:00'
-                            }]
-                        ]
-                    },
-                    data: [4.26, 4.26, 4.26, 4.26, 4.26, 4.26, 4.26, 4.26, 4.26, 4.26, 4.26, 4.26, 4.26, 4.26,
-                        4.26, 4.26, 4.26, 4.26, 4.26, 4.26, 4.26, 4.26, 4.26, 4.26, 4.26
-                    ]
-                },
-                {
-                    name: '武定门',
-                    type: 'line',
-                    yAxisIndex: 1,
-                    lineStyle: {
-                        width: 1
-                    },
-                    markArea: {
-                        silent: true,
-                        data: [
-                            [{
-                                xAxis: '9-21-0:00'
-                            }, {
-                                xAxis: '9-22-0:00'
-                            }]
-                        ]
-                    },
-                    data: [2.94, 2.94, 2.94, 2.94, 2.94, 2.94, 2.94, 2.94, 2.94, 2.94, 2.94, 2.94, 2.94, 2.94,
-                        2.94, 2.94, 2.94, 2.94, 2.94, 2.94, 2.94, 2.94, 2.94, 2.94, 2.94
-                    ]
                 }
             ]
         };
