@@ -6,21 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        .chart {
+            height: 300px;
+            margin: 20px;
+        }
+    </style>
 </head>
 
 <body>
-    <div id="waterChart" style="height:500px;"></div>
+    <div id="chart" class="chart"></div>
 
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
     <script src="../../frame/echart/echarts.min.js"></script>
     <script src="../../frame/echart/macarons.js"></script>
     <script>
-        // 水情
-        var waterChart = echarts.init(document.getElementById('waterChart'), 'macarons');
+        // ------------------------------------ 自定义y轴 ------------------------------------
+        var chart = echarts.init(document.getElementById('chart'), 'macarons');
+
+        var icons = {
+            'rectangle': '../../images/Echart/rectangle.png'
+        };
 
         option = {
             title: {
-                text: '折线图渐变色',
+                text: '自定义y轴',
                 x: 'center',
                 textStyle: {
                     fontSize: 16
@@ -60,56 +70,55 @@
                 ]
             }],
             yAxis: [{
-                    splitLine: {
-                        show: true
+                splitLine: {
+                    show: true
+                },
+                splitArea: {
+                    show: false
+                },
+                min: 0,
+                max: 12,
+                interval: 2, //间隔
+                minInterval: 1, //设置成1保证坐标轴分割刻度显示成整数。
+                type: 'value',
+                // inverse: true,
+                data: ['6'],
+                axisLabel: {
+                    formatter: function (value) {
+                        return '{value|' + value + '}{' + value + '| }';
                     },
-                    splitArea: {
-                        show: false
-                    },
-                    type: 'value',
-                    position: 'left',
-                    name: '水位（m）',
-                    axisLabel: {
-                        formatter: '{value}'
-                    }
-                }
-            ],
-            series: [{
-                    name: '水位',
-                    type: 'line',
-                    lineStyle: {
-                        width: 1
-                    },
-                    markArea: {
-                        silent: true,
-                        data: [
-                            [{
-                                xAxis: '9-21-0:00'
-                            }, {
-                                xAxis: '9-22-0:00'
-                            }]
-                        ]
-                    },
-                    areaStyle: {
-                        normal: {
-                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                    offset: 0,
-                                    color: '#eb64fb'
-                                },
-                                {
-                                    offset: 1,
-                                    color: '#3fbbff0d'
-                                }
-                            ], false),
+                    margin: -6,
+                    rich: {
+                        value: {
+                            lineHeight: 30,
+                            align: 'center',
+                            padding: [0, 10]
+                        },
+                        6: {
+                            height: 200,
+                            width: 6,
+                            align: 'center',
+                            backgroundColor: {
+                                image: icons.rectangle
+                            }
                         }
-                    },
-                    data: [393, 438, 485, 631, 689, 824, 987, 1000, 1100, 1200]
-                }
-            ]
+                    }
+                },
+                position: 'left',
+                name: '水位（m）'
+            }],
+            series: [{
+                name: '水位',
+                type: 'line',
+                lineStyle: {
+                    width: 1
+                },
+                data: [3.93, 4.38, 4.85, 6.31, 6.89, 15.24, 9.87, 10.00, 11.00, 12.00]
+            }]
         };
 
-        waterChart.setOption(option, true);
-        waterChart.resize();
+        chart.setOption(option, true);
+        chart.resize();
     </script>
 </body>
 
