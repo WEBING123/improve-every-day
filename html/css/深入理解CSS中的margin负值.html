@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h2 {
+            margin-bottom: 50px;
+            font-style: italic;
+        }
+
+        p {
+            line-height: 50px;
+        }
+
+        .example {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .example li {
+            width: 200px;
+            height: 100px;
+            margin: 20px;
+            padding: 2px;
+            border: 2px dotted #f39c12;
+            border-radius: 5px;
+        }
+
+        .example li div {
+            display: inline-block;
+            width: 90%;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border-radius: 5px;
+            background-color: #3498db;
+            color: #ffffff;
+            margin-bottom: -100px;
+        }
+
+        .item01 {
+            vertical-align: top;
+        }
+
+        .item02 {
+            vertical-align: bottom;
+        }
+
+        .item03 {
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>深入理解CSS中的margin负值</h2>
+    <p>
+        <em>---------- vertical-align 属性值不同，则 <strong>margin负值</strong> 会显示不同的表现</em>
+    </p>
+
+    <ul class="example">
+        <li>
+            <div class="item01">vertical-align: top;</div>
+        </li>
+        <li>
+            <div class="item02">vertical-align: bottom;</div>
+        </li>
+        <li>
+            <div class="item03">vertical-align: middle;</div>
+        </li>
+    </ul>
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h2 {
+            margin-bottom: 50px;
+            font-style: italic;
+        }
+
+        .example {
+            width: 500px;
+            height: 100px;
+            margin: 10px 0;
+            padding: 2px;
+            border: 2px dotted #f39c12;
+            border-radius: 5px;
+        }
+
+        .example li {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            border-radius: 5px;
+            color: #ffffff;
+        }
+
+        .example1 li:first-child {
+            width: 50%;
+            margin-left: auto;
+            background-color: #3498db;
+        }
+
+        .example2 li:first-child {
+            width: 50%;
+            margin-right: auto;
+            background-color: #d35400;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Auto Margins Examples</h2>
+
+    <ul class="example example1">
+        <li>margin-left: auto;</li>
+    </ul>
+
+    <ul class="example example2">
+        <li>margin-right: auto;</li>
+    </ul>
+</body>
+
+</html>
