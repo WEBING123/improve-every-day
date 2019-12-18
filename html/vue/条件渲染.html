@@ -23,15 +23,21 @@
 
         #vue-app {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             justify-content: center;
             align-items: center;
+        }
+
+        .panel {
+            width: 220px;
+            height: 220px;
+            margin: 0 15px;
         }
 
         .item {
             width: 100px;
             height: 100px;
-            line-height: 100px;
+            padding: 30px 0;
             text-align: center;
             color: #ffffff;
         }
@@ -55,7 +61,7 @@
             <div class="panel-heading">v-if</div>
             <div class="panel-body">
                 <button @click="btnClick" type="button" class="btn btn-success">{{ text }}</button>
-                <div class="item circle" v-if="show"></div>
+                <div class="item circle" v-if="visible"></div>
             </div>
         </div>
 
@@ -63,7 +69,15 @@
             <div class="panel-heading">v-if / v-else</div>
             <div class="panel-body">
                 <div class="item square" v-if="display">ONE</div>
-                <div class="item square" v-else>TWO</div>
+                <div class="item square" v-else>ONE HIDE TWO SHOW</div>
+            </div>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">v-show</div>
+            <div class="panel-body">
+                <button @click="showClick" type="button" class="btn btn-success">{{ showText }}</button>
+                <div class="item circle" v-show="show"></div>
             </div>
         </div>
 
@@ -73,14 +87,20 @@
         new Vue({
             el: "#vue-app",
             data: {
-                show: true,
+                visible: true,
                 display: false,
-                text: 'SHOW'
+                show: true,
+                text: 'SHOW',
+                showText: 'display: block;'
             },
             methods: {
                 btnClick: function (e) {
+                    this.visible = !this.visible;
+                    this.text = !this.visible ? 'SHOW' : 'HIDE'
+                },
+                showClick: function (e) {
                     this.show = !this.show;
-                    this.text = !this.show ? 'SHOW' : 'HIDE'
+                    this.showText = !this.show ? 'display: block;' : 'display: none;'
                 }
             }
         })
