@@ -35,6 +35,10 @@
             font-style: italic;
         }
 
+        p {
+            line-height: 50px;
+        }
+
         .example {
             width: 500px;
             height: 100px;
@@ -45,25 +49,39 @@
         }
 
         .example li {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
             height: 100%;
+            line-height: 100px;
+            text-align: center;
             border-radius: 5px;
             color: #ffffff;
         }
 
-        .example1 li:first-child {
+        .example1 li {
             width: 50%;
             margin-left: auto;
             background-color: #3498db;
         }
 
-        .example2 li:first-child {
+        .example2 li {
             width: 50%;
             margin-right: auto;
             background-color: #d35400;
+        }
+
+        .example3 li {
+            /* display: inline-block; */
+        }
+
+        .example3 li:first-child {
+            width: 25%;
+            margin-right: auto;
+            background-color: #2ecc71;
+        }
+
+        .example3 li:nth-child(2) {
+            width: 25%;
+            margin-left: auto;
+            background-color: #16a085;
         }
     </style>
 </head>
@@ -71,12 +89,21 @@
 <body>
     <h2>Auto Margins Examples</h2>
 
+    <p>
+        <em>使用 margin-left: auto，auto 则会计算当前的整个可用空间，然后将这么多的空间安排在元素的左侧，结果将元素一直向右推。</em>
+    </p>
+
     <ul class="example example1">
         <li>margin-left: auto;</li>
     </ul>
 
     <ul class="example example2">
         <li>margin-right: auto;</li>
+    </ul>
+
+    <ul class="example example3">
+        <li>Left Item</li>
+        <li>Right Item</li>
     </ul>
 </body>
 
