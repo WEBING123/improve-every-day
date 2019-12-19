@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../frame/bootstrap/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body,
+        #vue-app {
+            height: 100%;
+            width: 100%;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        li {
+            line-height: 30px;
+            font-size: 15px;
+        }
+
+        #vue-app,
+        .alert {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #vue-app {
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="vue-app">
+        <!-- ------------------------ input ------------------------ -->
+        <div class="alert alert-success">
+            <div class="input-group">
+                <span class="input-group-addon">input</span>
+                <input v-model="inputValue" type="text" class="form-control" placeholder="edit me">
+            </div>
+        </div>
+
+        <div class="alert alert-danger">
+            input value is ： {{ inputValue }}
+        </div>
+
+        <!-- ------------------------ textarea ------------------------ -->
+        <div class="alert alert-info">
+            <div class="input-group">
+                <span class="input-group-addon">textarea</span>
+                <textarea v-model="textareaValue" class="form-control" name="" id="" cols="18" rows="5"></textarea>
+            </div>
+        </div>
+
+        <div class="alert alert-danger">
+            textarea value is ： {{ textareaValue }}
+        </div>
+
+        <!-- ------------------------ checkbox ------------------------ -->
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input type="checkbox" v-model="checkbox">
+            </span>
+            <button type="button" class="btn btn-warning">{{ checkbox }}</button>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#vue-app",
+            data: {
+                inputValue: "",
+                textareaValue: "",
+                checkbox: "true"
+            },
+            methods: {}
+        })
+    </script>
+
+</body>
+
+</html>
