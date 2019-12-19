@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../frame/bootstrap/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body,
+        #vue-app {
+            height: 100%;
+            width: 100%;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        li {
+            line-height: 30px;
+            font-size: 15px;
+        }
+
+        #vue-app,
+        .alert {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #vue-app {
+            flex-direction: row;
+        }
+
+        .alert {
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="vue-app">
+        <div class="alert alert-success">
+            <h3>{{ name }}</h3>
+            <ul>
+                <li v-for="item in items">
+                    {{ item.message }}
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#vue-app",
+            data: {
+                name: "登高",
+                items: [{
+                        message: "风急天高猿啸哀，渚清沙白鸟飞回。"
+                    },
+                    {
+                        message: "无边落木萧萧下，不尽长江滚滚来。"
+                    },
+                    {
+                        message: "万里悲秋常作客，百年多病独登台。"
+                    },
+                    {
+                        message: "艰难苦恨繁霜鬓，潦倒新停浊酒杯。"
+                    }
+                ]
+            },
+            methods: {}
+        })
+    </script>
+
+</body>
+
+</html>
