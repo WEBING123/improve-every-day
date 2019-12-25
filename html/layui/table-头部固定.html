@@ -7,14 +7,30 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="../../frame/layui/css/layui.css">
+    <style>
+        html, body {
+            height: 100%;
+        }
+        .layui-container {
+            overflow: auto;
+            height: 80%;
+            border: 2px dotted #f39c12;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 
 <body>
     <div class="layui-container">
         <table class="layui-table" id="table" lay-filter="table"></table>
     </div>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
     <script src="../../frame/layui/layui.js"></script>
     <script>
+        // 表格自适应高度，用于表头固定
+        var thisTableHeight = $(window).height() - 600;
+        alert(thisTableHeight);
+
         layui.use(['form', 'table'], function () {
             var form = layui.form;
             var table = layui.table;
@@ -23,6 +39,7 @@
             table.render({
                 elem: '#table',
                 url: "../../data/layuiTable.json",
+                height: thisTableHeight,
                 cols: [
                     [{
                             type: 'checkbox',
