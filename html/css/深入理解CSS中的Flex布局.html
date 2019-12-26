@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h2 {
+            margin-bottom: 50px;
+            font-style: italic;
+        }
+
+        p {
+            line-height: 50px;
+        }
+
+        .example {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .example li {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 450px;
+            height: 100px;
+            margin: 20px;
+            padding: 2px;
+            border: 2px dotted #f39c12;
+            border-radius: 5px;
+        }
+
+        .example li div {
+            width: 25%;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border-radius: 5px;
+            background-color: #3498db;
+            color: #ffffff;
+        }
+
+        .item01 {
+            justify-content: center;
+        }
+
+        .item02 {
+            justify-content: flex-start;
+        }
+
+        .item03 {
+            justify-content: flex-end;
+        }
+
+        .item04 {
+            justify-content: space-between;
+        }
+
+        .item05 {
+            justify-content: space-around;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>深入理解CSS中的Flex布局</h2>
+    <p>
+        <em>---------- justify-content 属性值不同，则项目在 <strong>主轴</strong> 上的不同对齐方式</em>
+    </p>
+
+    <ul class="example">
+        <li class="item01">
+            <div>center</div>
+            <div>center</div>
+            <div>center</div>
+        </li>
+        <li class="item02">
+            <div>flex-start</div>
+            <div>flex-start</div>
+            <div>flex-start</div>
+        </li>
+        <li class="item03">
+            <div>flex-end</div>
+            <div>flex-end</div>
+            <div>flex-end</div>
+        </li>
+        <li class="item04">
+            <div>flex-end</div>
+            <div>flex-end</div>
+            <div>flex-end</div>
+        </li>
+        <li class="item05">
+            <div>flex-end</div>
+            <div>flex-end</div>
+            <div>flex-end</div>
+        </li>
+    </ul>
+</body>
+
+</html>
