@@ -10,9 +10,9 @@
 
 <body>
     <script>
-        // 声明数组的方式
+        // -------------------- 1、声明数组的方式
         // ①数组字面量
-        var arr1 = [];
+        var arr1 = [0, 3, 7, 8, 15, 50, 66];
 
         // ②通过系统内置的 Array 构造函数声明数组
         // 不推荐
@@ -22,8 +22,14 @@
         var arr3 = Array();
 
         console.log(arr1);
+
+        // -------------------- 2、筛选数组中的数据
+        for (let i = 0; i < arr1.length; i++) {
+            if (arr1[i] > 10) {
+                arr2.push(arr1[i]);
+            }
+        }
         console.log(arr2);
-        console.log(arr3);
     </script>
 </body>
 
