@@ -10,26 +10,32 @@
 
 <body>
     <script>
-        // -------------------- 1、声明数组的方式
-        // ①数组字面量
+        // ---------------------------------------- 1、声明数组的方式
+        // （1）数组字面量
         var arr1 = [0, 3, 7, 8, 15, 50, 66];
+        console.log(arr1);
 
-        // ②通过系统内置的 Array 构造函数声明数组
+        // （2）通过系统内置的 Array 构造函数声明数组
         // 不推荐
         var arr2 = new Array();
 
-        // ③不使用
+        // （3）不使用
         var arr3 = Array();
 
-        console.log(arr1);
-
-        // -------------------- 2、筛选数组中的数据
+        // ---------------------------------------- 2、筛选数组中的值
+        // （1）for循环
         for (let i = 0; i < arr1.length; i++) {
             if (arr1[i] > 10) {
                 arr2.push(arr1[i]);
             }
         }
         console.log(arr2);
+
+        // （2）filter
+        var newArr = arr1.filter(function (elem) {
+            return elem % 2 === 0;
+        })
+        console.log(newArr);
     </script>
 </body>
 
