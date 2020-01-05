@@ -8,6 +8,7 @@
 </head>
 <body>
     <script>
+        // for of 和 for in 的区别
         var arr = ['FRIDAY', 'JARVIS', 'EDITH'];
         // for of
         for(let i of arr) {
@@ -16,6 +17,18 @@
         // for in
         for(let j in arr) {
             console.log(j); // 0, 1, 2
+        }
+
+        // for of 循环遍历对象
+        var AIObj = {
+            AIFirst: 'FRIDAY',
+            AISecond: 'JARVIS',
+            AIThird: 'EDITH'
+        }
+
+        for (const i of Object.keys(AIObj)) {
+            console.log(i); // AIFirst, AISecond, AIThird
+            console.log(AIObj[i]); // FRIDAY, JARVIS, EDITH
         }
     </script>
 
