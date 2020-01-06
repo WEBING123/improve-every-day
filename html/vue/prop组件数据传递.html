@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .clearfix:after {
+            content: '.';
+            height: 0;
+            display: block;
+            clear: both;
+        }
+
+        .fl {
+            float: left;
+        }
+
+        html,
+        body,
+        .vm {
+            width: 100%;
+            height: 100%;
+        }
+
+        .vm {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vm" id="vmA">
+        <film-components :tony="tony"></film-components>
+        <film-components :edith="edith" :tony="tony"></film-components>
+    </div>
+
+    <div class="vm" id="vmB">
+        <num-counter :num="num"></num-counter>
+    </div>
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        const vmA = new Vue({
+            el: "#vmA",
+            data: {
+                edith: "EDITH",
+                tony: "Even Dead, I'm The Hero"
+            },
+            components: {
+                filmComponents: {
+                    props: {
+                        edith: {
+                            type: String,
+                            default: "Tony"
+                        },
+                        tony: {
+                            type: String,
+                            required: true
+                        }
+                    },
+                    template: `
+                        <div>
+                            <h2>{{ edith }}</h2>
+                            <h3>{{ tony }}</h3>
+                        </div>
+                `
+                }
+            }
+        })
+
+        const vmB = new Vue({
+            el: "#vmB",
+            data: {
+                num: 0
+            },
+            components: {
+                numCounter: {
+                    props: {
+                        num: {
+                            type: Number
+                        }
+                    },
+                    template: `
+                        <div>
+                            <p>{{ num }}</p>
+                            <p><button v-on:click="numClick">CLICK ME</button></p>
+                        </div>
+                    `,
+                    methods: {
+                        numClick: function () {
+                            this.num++
+                        }
+                    },
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
