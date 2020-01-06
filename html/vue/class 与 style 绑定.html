@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .clearfix:after {
+            content: '.';
+            height: 0;
+            display: block;
+            clear: both;
+        }
+
+        .fl {
+            float: left;
+        }
+
+        html,
+        body,
+        #vue-app {
+            width: 100%;
+            height: 100%;
+        }
+
+        #vue-app {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .border-shadow {
+            position: relative;
+            z-index: 10;
+            width: 990px;
+            height: 120px;
+            margin: 0 auto;
+            padding: 10px 10px 0 10px;
+            border: 2px solid rgba(0, 0, 0, .1);
+            border-bottom: none;
+        }
+
+        .amplification {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="vue-app">
+        <div :class="[borderStyle, clearfix]">
+            <div class="fl"><img v-on:mouseover="imgHover" :src="imgUrl" alt=""></div>
+            <div class="fl" :style="{ marginLeft: ml10 + 'px' }">
+                <div class="bookName">
+                    <span :style="titleStyle">庆余年</span>
+                    <em :style="[{ marginLeft: ml20 + 'px'}, author]">猫腻 著</em>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        new Vue({
+            el: "#vue-app",
+            data: {
+                borderStyle: 'border-shadow',
+                clearfix: 'clearfix',
+                imgUrl: 'https://bookcover.yuewen.com/qdbimg/349573/114559/180',
+                ml10: 10,
+                ml20: 20,
+                titleStyle: {
+                    fontSize: '28px',
+                    fontWeight: 700
+                },
+                author: {
+                    fontSize: '20px',
+                    fontWeight: 'normal'
+                }
+            },
+            methods: {
+                imgHover: function (e) {
+                    console.log("imgHover");
+                    $(this).addClass("amplification");
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
