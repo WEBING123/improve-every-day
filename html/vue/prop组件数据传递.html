@@ -40,21 +40,35 @@
 
         .wrap {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             align-items: center;
             justify-content: center;
         }
 
+        .vm {
+            width: 300px;
+            height: 300px;
+            margin: 20px;
+            padding: 2px;
+            border: 2px dotted #f39c12;
+            border-radius: 5px;
+        }
+
         .vm,
-        .vmBWrap {
+        .vmBWrap,
+        .vmCWrap {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
         }
 
-        .vm {
-            margin: 30px 0;
+        #vmC {
+            flex-direction: row;
+        }
+
+        #vmC .vmCWrap {
+            margin: 10px;
         }
     </style>
 </head>
@@ -69,10 +83,16 @@
         <div class="vm" id="vmB">
             <num-counter :num="num"></num-counter>
         </div>
+
+        <div class="vm" id="vmC">
+            <num-counter :num="num"></num-counter>
+            <num-counter :num="num"></num-counter>
+        </div>
     </div>
 
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     <script>
+        // ---------------------------- prop 验证 ----------------------------
         const vmA = new Vue({
             el: "#vmA",
             data: {
@@ -101,6 +121,7 @@
             }
         })
 
+        // ---------------------------- 不应该在子组件内部改变 prop ----------------------------
         const vmB = new Vue({
             el: "#vmB",
             data: {
@@ -122,6 +143,39 @@
                     methods: {
                         numClick: function () {
                             this.num++
+                        }
+                    }
+                }
+            }
+        })
+
+        // ---------------------------- 组件中的数据 ----------------------------
+        const vmC = new Vue({
+            el: "#vmC",
+            data: {
+                num: 0
+            },
+            components: {
+                numCounter: {
+                    data() {
+                        return {
+                            newNum: this.num
+                        }
+                    },
+                    props: {
+                        num: {
+                            type: Number
+                        }
+                    },
+                    template: `
+                        <div class="vmCWrap">
+                            <h1>{{ newNum }}</h1>
+                            <div><button v-on:click="numClick" type="button" class="btn btn-primary"> CLICK ME </button></div>
+                        </div>
+                    `,
+                    methods: {
+                        numClick: function () {
+                            this.newNum++
                         }
                     }
                 }
