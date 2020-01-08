@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script>
+        // ---------------------------- 遍历数组 ----------------------------
+        var arr = ['FRIDAY', 'JARVIS', 'EDITH'];
+        var arrI = [];
+        var arrVal = [];
+        
+        $.each(arr,function (i, val) {
+            arrI.push(i);
+            arrVal.push(val);
+        })
+        console.log(arrI); // (3) [0, 1, 2]
+        console.log(arrVal); // (3) ["FRIDAY", "JARVIS", "EDITH"]
+
+        // ---------------------------- 遍历对象 ----------------------------
+        var AIObj = {
+            AIFirst: 'FRIDAY', AISecond: 'JARVIS', AIThird: 'EDITH'
+        }
+        var objectKey = [];
+        var objectVal = [];
+        
+        $.each(AIObj,function (key, val) {
+            objectKey.push(key);
+            objectVal.push(val);
+        })
+        console.log(objectKey); // (3) ["AIFirst", "AISecond", "AIThird"]
+        console.log(objectVal); // (3) ["FRIDAY", "JARVIS", "EDITH"]
+    </script>
+
+</body>
+</html>
