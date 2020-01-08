@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .chart {
+            height: 300px;
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="chart" class="chart"></div>
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script src="../../frame/echart/echarts.min.js"></script>
+    <script src="../../frame/echart/macarons.js"></script>
+    <script>
+        // ------------------------------------ 纵坐标标签文字超多换行 ------------------------------------
+        var chart = echarts.init(document.getElementById('chart'), 'macarons');
+
+        option = {
+            title: {
+                text: '纵坐标标签文字超多换行',
+                x: 'center',
+                textStyle: {
+                    fontSize: 16
+                }
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: {
+                type: 'value',
+                boundaryGap: [0, 0.01]
+            },
+            yAxis: {
+                type: 'category',
+                data: ['细雨蒙蒙夜沉沉，梁上君子进我门。', '腹内诗书存千卷，床头金银无半文', '出门休惊黄尾犬，越墙莫损兰花盆', '天寒不及披衣送，趁着月黑赶豪门。', '中国',
+                    '世界人口(万)'
+                ],
+                axisLabel: { //坐标轴刻度标签的相关设置。
+                    interval: 0,
+                    formatter: function (params) {
+                        var newParamsName = "";
+                        var paramsNameNumber = params.length;
+                        var provideNumber = 8;
+                        var rowNumber = Math.ceil(paramsNameNumber / provideNumber);
+                        if (paramsNameNumber > provideNumber) {
+                            for (var p = 0; p < rowNumber; p++) {
+                                var tempStr = "";
+                                var start = p * provideNumber;
+                                var end = start + provideNumber;
+                                if (p == rowNumber - 1) {
+                                    tempStr = params.substring(start, paramsNameNumber);
+                                } else {
+                                    tempStr = params.substring(start, end) + "\n";
+                                }
+                                newParamsName += tempStr;
+                            }
+
+                        } else {
+                            newParamsName = params;
+                        }
+                        return newParamsName
+                    }
+                },
+            },
+            series: [{
+                type: 'bar',
+                data: [18203, 23489, 29034, 104970, 131744, 630230]
+            }]
+        };
+
+        chart.setOption(option, true);
+        chart.resize();
+    </script>
+</body>
+
+</html>
