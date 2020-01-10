@@ -56,27 +56,14 @@
         }
 
         .example li div {
-            display: inline-block;
+            float: left;
             width: 90%;
-            height: 50px;
-            line-height: 50px;
+            height: 40px;
+            line-height: 40px;
             text-align: center;
             border-radius: 5px;
             background-color: #3498db;
             color: #ffffff;
-            margin-bottom: -100px;
-        }
-
-        .item01 {
-            vertical-align: top;
-        }
-
-        .item02 {
-            vertical-align: bottom;
-        }
-
-        .item03 {
-            vertical-align: middle;
         }
     </style>
 </head>
@@ -84,12 +71,13 @@
 <body>
     <h2>深入理解CSS中的clearfix清除浮动</h2>
     <p>
-        <em>---------- vertical-align 属性值不同，则 <strong>margin负值</strong> 会有不同的表现</em>
+        <em>---------- 为什么 display 设置为 <strong>table、block、list-item</strong></em>
     </p>
 
     <ul class="example">
-        <li>
-            <div class="item01">vertical-align: top;</div>
+        <li class="item01">
+            <div>float: left;</div>
+            <div>float: left;</div>
         </li>
         <li>
             <div class="item02">vertical-align: bottom;</div>
