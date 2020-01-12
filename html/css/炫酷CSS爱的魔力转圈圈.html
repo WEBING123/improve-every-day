@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h2 {
+            margin-bottom: 50px;
+            font-style: italic;
+        }
+
+        p {
+            line-height: 50px;
+        }
+
+        .example {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .example li {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            animation: rotate 5s infinite linear;
+        }
+
+        .example li div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            background-color: #1e90ff;
+        }
+
+        .example li div:first-child {
+            /* background-color: #ffa502; */
+        }
+
+        .example li div:nth-child(2) {
+            transform: rotate(120deg);
+            /* background-color: #ff4757; */
+        }
+
+        .example li div:last-child {
+            transform: rotate(240deg);
+            /* background-color: #1e90ff; */
+        }
+
+        .example li::after {
+            content: '';
+            width: 50px;
+            height: 50px;
+            background-color: #ffffff;
+            border-radius: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h2>炫酷CSS爱的魔力转圈圈</h2>
+
+    <ul class="example">
+        <li>
+            <div></div>
+            <div></div>
+            <div></div>
+        </li>
+    </ul>
+</body>
+
+</html>

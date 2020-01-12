@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h2 {
+            margin-bottom: 50px;
+            font-style: italic;
+        }
+
+        p {
+            line-height: 50px;
+        }
+
+        .example {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .square, .square::before, .square::after {
+            position: absolute; top: 0; bottom: 0; left: 0; right: 0;
+        }
+        .square {
+            width: 200px; height: 200px; margin: auto; color: #3498db;
+            box-shadow: inset 0 0 0 1px rgba(41, 128, 185, 0.5);
+        }
+        .square::before, .square::after {
+            content: ''; z-index: -1; margin: -5%;
+            box-shadow: inset 0 0 0 2px;
+            animation: move 8s linear infinite;
+        }
+        .square::before { animation-delay: -4s; }
+        @keyframes move {
+            0%, 100% { clip: rect(0px, 220.0px, 2px, 0px); }
+            25% { clip: rect(0px, 2px, 220.0px, 0px); }
+            50% { clip: rect(218.0px, 220.0px, 220.0px, 0px); }
+            75% { clip: rect(0px, 220.0px, 220.0px, 218.0px); }
+        }
+    </style>
+</head>
+
+<body>
+    <h2>炫酷CSS正方形边框动效</h2>
+
+    <div class="example">
+        <div class="square"></div>
+    </div>
+</body>
+
+</html>
