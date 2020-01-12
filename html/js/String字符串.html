@@ -14,12 +14,41 @@
         var str = "I love u three thousand";
         console.log(str.slice(9, 14)); // three
         console.log(str.substring(9, 14));; // three
-        
+
         // ---------------------------- 字符串拼接 ----------------------------
-        var num = "three"; 
+        var num = "three";
         var tony = `I love you ${num} thousand `;
         // I love you three thousand 
         console.log(tony);
+
+        // ---------------------------- 字符串的字节长度 ----------------------------
+        // 当前字符位的 Unicode > 255,那么该字符字节长度为 2（汉字）；若 Unicode <= 255 则为 1。
+        function byteLength(str) {
+            var count = str.length;
+            for (let i = 0; i < str.length; i++) {
+                if (str.charCodeAt(i) > 255) {
+                    count++;
+                }
+            }
+            return count;
+        }
+        byteLength("I love u three thousand"); // 23
+
+        function byteLen(str) {
+            var count = 0;
+            for (let i = 0; i < str.length; i++) {
+                if (str.charCodeAt(i) > 255) {
+                    count += 2;
+                } else {
+                    count++;
+                }
+            }
+            return count;
+        }
+        byteLen("I love u three thousand"); // 23
+
+        // ---------------------------- charAt()  ----------------------------
+        "I love u three thousand".charAt(0); // I
     </script>
 </body>
 
