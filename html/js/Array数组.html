@@ -36,6 +36,24 @@
             return elem % 2 === 0;
         })
         console.log(newArr);
+
+        // ---------------------------------------- 2、插入数组
+        // （1）开头插入
+        let arr4 = [1, 2];
+        arr4.unshift(0);
+        console.log(arr4); // [0,1,2]
+
+        // （2）结尾插入
+        let arr5 = [1, 2];
+        arr5.push(3);
+        console.log(arr5);
+
+        // （2）数组指定位置插入
+        let arr6 = ['one', 'two', 'three'];
+        arr6.splice(0, 1) // ['two', 'three']
+        console.log(arr6);
+        arr6.splice(0, 0, 'four') // ['four', 'two', 'three']
+        console.log(arr6);
     </script>
 </body>
 
