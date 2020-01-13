@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <ComponentCarousel :percentage="10"/>
+    <ComponentCarousel :percentage="50"/>
+    <ComponentCarousel :percentage="80" status="success"/>
+    <ComponentCarousel :percentage="40" status="exeption"/>
   </div>
 </template>
 

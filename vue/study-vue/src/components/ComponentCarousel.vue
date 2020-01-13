@@ -2,11 +2,12 @@
   <div class="progress">
       <div class="progress-bar">
           <div class="progress-bar__outer" :style="{height: strokeWidth + 'px'}">
-              <div class="progress-bar__inner" :style="{width: percentage + '%', backgroundColor: stroke}"></div>
+              <div class="progress-bar__inner" :style="barStyle"></div>
           </div>
       </div>
       <div class="progress-text" :style="{fontSize: progressTextSize + 'px'}">
-          90%
+          <template v-if="!status">{{ percentage }} %</template>
+          <span v-else class="icon" :class="progressTextStyle"></span>
       </div>
   </div>
 </template>
@@ -20,6 +21,7 @@ export default {
       }
   },
   props: {
+    //   进度条高度
     strokeWidth: {
         type: Number,
         default: 6
@@ -34,6 +36,11 @@ export default {
     },
     status: {
         type: String
+    },
+    type: {
+        type: String,
+        default: 'line',
+        validator: val => ['circle', 'line'].includes(val)
     }
   },
   computed: {
@@ -43,7 +50,7 @@ export default {
       stroke() {
           let color;
           switch (this.status) {
-              case 'scuess':
+              case 'success':
                   color = '#13ce66'
                   break;
           case 'exeption':
@@ -53,6 +60,23 @@ export default {
                   color = '#20a0ff'
           }
           return color;
+      },
+      barStyle() {
+          return {
+              width: this.percentage + '%', 
+              backgroundColor: this.stroke
+          }
+      },
+      progressTextStyle() {
+          if (this.type == 'line') {
+              return this.status == 'success'
+                ? 'icon-circle-check'
+                : 'icon-circle-close'
+          } else {
+              return this.status == 'success'
+                ? 'icon-check'
+                : 'icon-close'
+          }
       }
   },
 }
@@ -80,6 +104,22 @@ export default {
     .progress-text {
         display: inline-block;
         margin-left: 10px;
-        color: #606266
+        color: #606266;
+    }
+    .icon {
+        font-size: 18px;
+        vertical-align: middle;
+    }
+    .icon-circle-check::after {
+        content: "☑"
+    }
+    .icon-circle-close::after {
+        content: "☒"
+    }
+    .icon-check::after {
+        content: "✔"
+    }
+    .icon-close::after {
+        content: "✘"
     }
 </style>
