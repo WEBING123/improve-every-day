@@ -42,8 +42,6 @@
 
 <body>
     <div id="vue-app">
-        <h1>{{ add() }}</h1>
-        <h1>{{ Peter }}</h1>
     </div>
 
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
@@ -51,20 +49,10 @@
         new Vue({
             el: "#vue-app",
             data: {
-                numOne: 2,
-                numTwo: 6,
-                EDITH: "E.D.I.T.H",
-                Tony: "Even Dead, I'm The Hero"
             },
             methods: {
-                add: function () {
-                    return sum = this.numOne + this.numTwo;
-                }
             },
             computed: {
-                Peter: function () {
-                    return ` ${this.EDITH}  ${this.Tony} `
-                }
             }
         })
     </script>
