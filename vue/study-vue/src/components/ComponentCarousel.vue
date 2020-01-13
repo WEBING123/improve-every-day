@@ -39,7 +39,7 @@ export default {
     status: {
         type: String
     },
-    // 进度条类型
+    // 进度条类型（类型只能是 circle 或 line）
     type: {
         type: String,
         default: 'line',
@@ -47,7 +47,7 @@ export default {
     }
   },
   computed: {
-      // 进度百分比显示样式【字体大小根据进度条的宽度而变化】  
+      // 进度百分比字体大小【字体大小根据进度条的宽度而变化】  
       progressTextSize () {
           return 12 + this.strokeWidth * 0.4;
       },
@@ -73,6 +73,7 @@ export default {
               backgroundColor: this.stroke
           }
       },
+      // 进度百分比字体样式
       progressTextStyle() {
           if (this.type == 'line') {
               return this.status == 'success'
