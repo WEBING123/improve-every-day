@@ -6,7 +6,7 @@
           </div>
       </div>
       <div class="progress-text" :style="{fontSize: progressTextSize + 'px'}">
-          <template v-if="!status">{{ percentage }} %</template>
+          <template v-if="!status">{{ percentage }}%</template>
           <span v-else class="icon" :class="progressTextStyle"></span>
       </div>
   </div>
@@ -21,11 +21,12 @@ export default {
       }
   },
   props: {
-    //   进度条高度
+    // 进度条高度
     strokeWidth: {
         type: Number,
-        default: 6
+        default: 10
     },
+    // 百分比数字
     percentage: {
         type: Number,
         default: 0,
@@ -34,9 +35,11 @@ export default {
             return value >= 0 && value <= 100;
         }
     },
+    // 进度条状态
     status: {
         type: String
     },
+    // 进度条类型
     type: {
         type: String,
         default: 'line',
@@ -44,9 +47,11 @@ export default {
     }
   },
   computed: {
+      // 进度百分比显示样式【字体大小根据进度条的宽度而变化】  
       progressTextSize () {
           return 12 + this.strokeWidth * 0.4;
       },
+      // 进度条颜色【颜色根据状态改变】   
       stroke() {
           let color;
           switch (this.status) {
@@ -61,6 +66,7 @@ export default {
           }
           return color;
       },
+      // 进度条样式【宽度（进度）和背景色】   
       barStyle() {
           return {
               width: this.percentage + '%', 
@@ -84,6 +90,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    .progress {
+        padding: 5px 0;
+    }
     .progress-bar {
         box-sizing: border-box;
         display: inline-block;
