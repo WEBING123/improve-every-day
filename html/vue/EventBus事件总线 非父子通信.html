@@ -1,4 +1,4 @@
-4<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -74,20 +74,42 @@
         .bg-danger {
             background-color: #f2dede !important;
         }
+
+        .input-group {
+            margin: 5px 0;
+        }
     </style>
 </head>
 
 <body>
     <div id="vue-app">
-        <square></square>
+        <!-- <square></square> -->
+
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input type="checkbox">
+            </span>
+            <input type="text" class="form-control">
+        </div>
+
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input type="checkbox">
+            </span>
+            <input type="text" class="form-control">
+        </div>
+
     </div>
 
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     <script>
         Vue.component('square', {
             data: function () {
-                return { btnArr: ['btn-primary', 'btn-success', 
-                                  'btn-warning', 'btn-danger'] }
+                return {
+                    btnArr: ['btn-primary', 'btn-success',
+                        'btn-warning', 'btn-danger'
+                    ]
+                }
             },
             template: `<div class="HV-center">
                 <div class="square" ref="square"></div>
