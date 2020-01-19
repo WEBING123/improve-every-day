@@ -67,7 +67,24 @@
     <h2>ES6-箭头函数</h2>
 
     <script type="text/javascript">
-    
+        var arr = [1, 2, 3, 4, 5].filter(function (value, index) {
+            return value >= 3
+        })
+        // [3, 4, 5]
+
+        // 第一步：去掉 function 关键字，加 =>
+        var arr2 = [1, 2, 3, 4, 5].filter((value, index) => {
+            return value >= 3
+        })
+
+        // 第二步：只保留使用的变量：若只有一个变量，括号 “()”可省略
+        var arr3 = [1, 2, 3, 4, 5].filter((value) => {
+            return value >= 3
+        })
+
+        console.log(arr);
+        console.log(arr2);
+        console.log(arr3);
     </script>
 </body>
 
