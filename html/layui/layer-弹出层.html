@@ -51,29 +51,26 @@
 <script>
     // 配置一个透明的询问框
     // 点击确定按钮，弹出提示框
-layui.use('layer', function(){
-    var $ = layui.jquery, layer = layui.layer;
-    
-    //触发事件
-    var active = {
-      
-      confirmTrans: function(){
-        //配置一个透明的询问框
-        layer.msg('大部分参数都是可以公用的<br>合理搭配，展示不一样的风格', {
-          time: 20000, //20s后自动关闭
-          btn: ['明白了', '知道了', '哦']
+    layui.use('layer', function () {
+        var $ = layui.jquery,
+            layer = layui.layer;
+
+        //触发事件
+        var active = {
+            confirmTrans: function () {
+                //配置一个透明的询问框
+                layer.msg('大部分参数都是可以公用的<br>合理搭配，展示不一样的风格', {
+                    time: 20000, //20s后自动关闭
+                    btn: ['明白了', '知道了', '哦']
+                });
+            }
+        };
+        $('.operate-sure td span').on('click', function () {
+            var othis = $(this),
+                method = othis.data('method');
+            active[method] ? active[method].call(this, othis) : '';
         });
-      }
-      
-      
-    };
-    
-    $('.operate-sure td span').on('click', function(){
-      var othis = $(this), method = othis.data('method');
-      active[method] ? active[method].call(this, othis) : '';
     });
-    
-  });
 </script>
 
 </html>
