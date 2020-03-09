@@ -41,8 +41,26 @@
         }
         console.log(Object.values(songTopThree));
 
-        // ---------------------------- 2020-1-6 ----------------------------
-        console.log("---------------------------- 2020-1-6 ----------------------------");
+        // ---------------------------- 2020-3-2 ----------------------------
+        console.log("---------------------------- 2020-3-2 ----------------------------");
+        var str1 = "hello"; // 全局变量
+        function fun() {
+            var res = "hello world"; // fun()中的局部变量
+        }
+
+        function funa() {
+            var str2 = "world"; // funa()中的局部变量
+            function funb() {
+                function func() {
+                    console.log(str1); // hello
+                    console.log(str2); // world
+                    console.log(res); // Uncaught ReferenceError: res is not defined
+                }
+                func();
+            }
+            funb();
+        }
+        funa();
     </script>
 </body>
 
