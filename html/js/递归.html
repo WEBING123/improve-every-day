@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 1-100 累加
+    // 递归
+    function sum(n) {
+        if (n === 1) {
+            return 1
+        }
+        return sum(n - 1) + n
+    }
+    console.log(sum(100));
+
+    // for 循环
+    function sum2() {
+        let count = 0;
+        for (let i = 0; i <= 100; i++) {
+            count += i
+        }
+        return count
+    }
+    console.log(sum2());
+
+    // 递归面试题
+    function fn() {
+        setTimeout(() => {
+            console.log(2020);
+        }, 2000);
+    }
+    fn();
+
+    function timer(ms) {
+        setTimeout(() => {
+            console.log('0202')
+            timer(ms)
+        }, ms)
+    }
+    timer(3000)
+</script>
+
+</html>
