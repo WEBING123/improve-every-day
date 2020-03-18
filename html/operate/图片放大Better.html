@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .enlargeImg_wrapper {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-color: rgba(52, 52, 52, 0.8);
+            background-size: 50%;
+        }
+
+        img:hover {
+            cursor: zoom-in;
+        }
+
+        .enlargeImg_wrapper:hover {
+            cursor: zoom-out;
+        }
+    </style>
+</head>
+
+<body>
+    <img class="enlargeImg" width="150" src="../../images/bg/mountain.jpg" title="点击查看大图" />
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script>
+        $(function () {
+            enlargeImg();
+        })
+        // 查看大图
+        function enlargeImg() {
+            $(".enlargeImg").click(function () {
+                $(this).after("<div class='enlargeImg_wrapper'></div>");
+                var imgSrc = $(this).attr('src');
+                $(".enlargeImg_wrapper").css("background-image", "url(" + imgSrc + ")");
+                $('.enlargeImg_wrapper').fadeIn(200);
+            })
+        }
+        // 关闭并移除图层
+        $("body").on('click', ".enlargeImg_wrapper", function () {
+            $(this).fadeOut(200).remove();
+        });
+    </script>
+</body>
+
+</html>
