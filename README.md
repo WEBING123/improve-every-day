@@ -1,3 +1,2 @@
 * JavaScript 基础
-
-* [原型](https://github.com/fouber/blog/issues/10)
+    * [JavaScript 基础 - prototype(原型)](https://github.com/fouber/blog/issues/10)
