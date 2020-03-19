@@ -1,5 +1,5 @@
 # improve-every-day
 
-* JavaScript 基础
+* JavaScript系列
 
-    * [JavaScript 基础 - prototype(原型)](https://github.com/fouber/blog/issues/10)
+    * [Ajax初接触之原生js实现ajax请求](https://github.com/WEBING123/improve-every-day/issues/1)
