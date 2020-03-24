@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>内蒙古自治区镫口扬水可视化机房</title>
+    <style>
+        * {margin: 0;padding: 0;}
+        ul, li {list-style: none;}
+        img {vertical-align: middle;}
+        .white {color: #ffffff;}
+        /*  */
+        .bg {
+            background-repeat: no-repeat;
+            background-size: cover;
+            -webkit-background-size: cover;
+            -o-background-size: cover;
+            background-position: center;
+        }
+        .wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(#0d3b92, #092152);
+        }
+        .logo {
+            position: fixed;
+            top: 35px;
+            left: 50%;
+            transform: translateX(-42%);
+            -webkit-transform: translateX(-42%);
+            -moz-transform: translateX(-42%);
+            -ms-transform: translateX(-42%);
+            -o-transform: translateX(-42%);
+        }
+        .engine {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+        .engine .gif {
+            width: 1089px;
+            height: 539px;
+            background-image: url('./images/engine.png');
+        }
+        .module {position: fixed;}
+        /* 门禁、温湿度 */
+        .module1, .module2, .module3 { left: 2%; }
+        .module4, .module5, .module6 { right: 2%; }
+        .module1, .module4 { top: 15%; }
+        .module2 { top: 45%; }
+        .module3 { top: 65%; }
+        .module5 { top: 40%; }
+        .module6 { top: 55%; }
+        .moduleWrap {position: relative;}
+        .tit {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 400px;
+            height: 54px;
+            background-image: url('./images/tit.png');
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .titName {
+            position: absolute;
+            top: 5px;
+            color: #ffffff;
+        }
+        .titBg {
+            position: relative;
+            top: 15px;
+            left: 0;
+            width: 400px;
+            padding-bottom: 15px;
+            background-image: url('./images/bg.png');
+            overflow: hidden;
+        }
+        .titBg1 { height: 235px;}
+        .titBg2 { height: 120px; }
+        .titBg3, .titBg5 { height: 80px; }
+        .titBg4 { height: 190px; }
+        .titBg6 { height: 290px; }
+        .title, .list {padding: 40px 10px 10px 20px;}
+        .title, .scrollBox li, .list {color: #7becff;}
+        .scrollBox {padding: 0 10px 10px 20px;}
+        .title span, .scrollBox li span {
+            display: inline-block;
+            width: 40%;
+            text-align: center;
+        }
+        .title span:first-child, .scrollBox li span:first-child {width: 20%;}
+        .scrollBox li, .list li {line-height: 25px;}
+        /* 温湿度 */
+        .list li .list-item:first-child {color: #ffffff;}
+        .list li .list-item {width: 33%; float: left;}
+        /* 火灾 */
+        .titBg3 .list,
+        .titBg3 ul,
+        .titBg3 ul li,
+        .titBg3 ul li .list-item {
+            height: 100%;
+            box-sizing: border-box;
+        }
+        .titBg3 ul li .list-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50%;
+        }
+        .titBg3 ul li .list-item img {
+            width: 45px;
+            margin: 0 5px;
+            vertical-align: middle;
+        }
+        .titBg3 ul li .list-item img:first-child {
+            width: 12px;
+            margin-right: 10px;
+        }
+        /* 网络情况 */
+        .titBg5 .list span:first-child {
+            margin-right: 8px;
+        }
+        /* 电流电压 */
+        .titBg6 .top {
+            width: 80%;
+            margin: 0 auto;
+            color: #7becff;
+            padding: 40px 10px 10px 20px;
+            border-bottom: 1px solid #7becff;
+        }
+        .titBg6 .top2 {
+            padding-top: 15px;
+        }
+        .titBg6 .top img {
+            margin-right: 5px;
+        }
+        .ups {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            padding-top: 10px;
+            color: #7becff;
+        }
+        .ups .ups-item {
+            width: 50%;
+            line-height: 30px;
+            text-align: center;
+        }
+        .ups span:first-child {
+            color: #ffffff;
+        }
+        .ups .status {
+            color: #fff600;
+        }
+        .ups .status,
+        .ups .mode {
+            box-sizing: border-box;
+            padding-left: 25px;
+            text-align: left;
+        }
+        .ups .mode {
+            padding-left: 20px;
+        }
+        /* 监控 */
+        .video {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 106%;
+            background-color: #000000;
+            cursor: pointer;
+        }
+        @media screen and (max-width: 1920px) {
+            html {font-size: 16px}
+        }
+        @media screen and (max-width: 1600px) {
+            html {font-size: 14px}
+            .tit {height: 48px;}
+            .tit, .titBg {width: 380px;}
+            .titBg {top: 15px; padding-bottom: 10px;}
+            .engine .gif {width: 870px; height: 430px; margin-top: 50px;} /* 80% */
+            .title,.list,.titBg6 .top {padding: 25px 10px 10px 20px;}
+            .titBg6 .top2 {padding-top: 5px;}
+            .titBg1 { height: 180px; }
+            .titBg2 { height: 100px; }
+            .titBg3, .titBg5 { height: 50px; }
+            .titBg4 { height: 180px; }
+            .titBg6 { height: 260px; }
+            .module5 { top: 45%; }
+            .module6 { top: 58%; }
+        }
+        @media screen and (max-width: 1366px) {
+            html {font-size: 10px}
+            .tit {height: 35px;}
+            .tit, .titBg {width: 300px;}
+            .titBg {top: 10px; padding-bottom: 10px;}
+            .engine .gif {width: 762px; height: 377px;} /* 70% */
+            .title,.list,.titBg6 .top {padding: 15px 10px 10px 20px;}
+            .titBg6 .top2 {padding-top: 5px;}
+            .titBg1 { height: 150px; }
+            .titBg2 { height: 80px; }
+            .titBg3, .titBg5 { height: 30px; }
+            .titBg4 { height: 120px; }
+            .titBg6 { height: 240px; }
+            .module3 { top: 70%; }
+            .module5 { top: 40%; }
+            .module6 { top: 55%; }
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            //获得当前<ul>
+            var $uList = $(".scrollBox ul");
+            var timer = null;
+            //触摸清空定时器
+            $uList.hover(function () {
+                    clearInterval(timer);
+                },
+                function () { //离开启动定时器
+                    timer = setInterval(function () {
+                            scrollList($uList);
+                        },
+                        1000);
+                }).trigger("mouseleave"); //自动触发触摸事件
+            //滚动动画
+            function scrollList(obj) {
+                //获得当前<li>的高度
+                var scrollHeight = $("ul li:first").height() - 15;
+                //滚动出一个<li>的高度
+                $uList.stop().animate({
+                        marginTop: -scrollHeight
+                    },
+                    600,
+                    function () {
+                        //动画结束后，将当前<ul>marginTop置为初始值0状态，再将第一个<li>拼接到末尾。
+                        $uList.css({
+                            marginTop: 0
+                        }).find("li:first").appendTo($uList);
+                    });
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="logo">
+            <img src="./images/logo.png" alt="">
+        </div>
+        <div class="engine">
+            <div class="gif bg"></div>
+        </div>
+        <!-- 门禁 -->
+        <div class="module module1">
+            <div class="moduleWrap">
+                <div class="tit bg">
+                    <div class="titName">门禁</div>
+                </div>
+                <div class="titBg titBg1 bg">
+                    <div class="title">
+                        <span>姓名</span><span>进入时间</span><span>退出时间</span>
+                    </div>
+                    <div class="scrollBox">
+                        <ul>
+                            <li><span>张三1</span><span>2020-3-23 10:08</span><span>2020-3-23 10:08</span></li>
+                            <li><span>张三2</span><span>2020-3-23 10:08</span><span>2020-3-23 10:08</span></li>
+                            <li><span>张三3</span><span>2020-3-23 10:08</span><span>2020-3-23 10:08</span></li>
+                            <li><span>张三</span><span>2020-3-23 10:08</span><span>2020-3-23 10:08</span></li>
+                            <li><span>张三</span><span>2020-3-23 10:08</span><span>2020-3-23 10:08</span></li>
+                            <li><span>张三</span><span>2020-3-23 10:08</span><span>2020-3-23 10:08</span></li>
+                            <li><span>张三</span><span>2020-3-23 10:08</span><span>2020-3-23 10:08</span></li>
+                            <li><span>李四</span><span>2020-3-23 10:08</span><span>2020-3-23 10:08</span></li>
+                            <li><span>王五</span><span>2020-3-23 10:08</span><span>2020-3-23 10:08</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 温湿度 -->
+        <div class="module module2">
+            <div class="moduleWrap">
+                <div class="tit bg">
+                    <div class="titName">温湿度</div>
+                </div>
+                <div class="titBg titBg2 bg">
+                    <div class="list">
+                        <ul>
+                            <li>
+                                <div class="list-item">温湿度1：</div>
+                                <div class="list-item">温度：<span>26.6</span><span>°</span></div>
+                                <div class="list-item">湿度：<span>26</span><span>％</span></div>
+                            </li>
+                            <li>
+                                <div class="list-item">温湿度2：</div>
+                                <div class="list-item">温度：<span>26.6</span><span>°</span></div>
+                                <div class="list-item">湿度：<span>26</span><span>％</span></div>
+                            </li>
+                            <li>
+                                <div class="list-item">温湿度3：</div>
+                                <div class="list-item">温度：<span>26.6</span><span>°</span></div>
+                                <div class="list-item">湿度：<span>26</span><span>％</span></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 火灾 -->
+        <div class="module module3">
+            <div class="moduleWrap">
+                <div class="tit bg">
+                    <div class="titName">火灾</div>
+                </div>
+                <div class="titBg titBg3 bg">
+                    <div class="list">
+                        <ul>
+                            <li>
+                                <div class="list-item"><img src="./images/radio.png" alt=""><span>正常</span><img src="./images/normal.png" alt=""></div>
+                                <div class="list-item"><span>报警</span><img src="./images/fire-dark.png" alt=""></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 监控 -->
+        <div class="module module4">
+            <div class="moduleWrap">
+                <div class="tit bg">
+                    <div class="titName">监控</div>
+                </div>
+                <div class="titBg titBg4 bg">
+                    <div class="video">
+                        <img src="./images/video.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 网络情况 -->
+        <div class="module module5">
+            <div class="moduleWrap">
+                <div class="tit bg">
+                    <div class="titName">网络情况</div>
+                </div>
+                <div class="titBg titBg5 bg">
+                    <div class="list">
+                        <span class="white">当前网络</span>
+                        <span>正常</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 电流电压 -->
+        <div class="module module6">
+            <div class="moduleWrap">
+                <div class="tit bg">
+                    <div class="titName">电流电压</div>
+                </div>
+                <div class="titBg titBg6 bg">
+                    <div class="top">
+                        <img src="./images/diamond.png" alt="">
+                        <span class="white">UPS</span>
+                    </div>
+                    <div class="ups">
+                        <div class="ups-item status"><span>状态：</span><span>运维</span></div>
+                        <div class="ups-item mode"><span>供电模式：</span><span>逆变</span></div>
+                        <div class="ups-item"><span>电池剩余容量：</span><span>80</span>%</div>
+                        <div class="ups-item"><span>电池剩余时间：</span><span>50</span>min</div>
+                    </div>
+                    <div class="top top2">
+                        <img src="./images/diamond.png" alt="">
+                        <span class="white">三相电量仪</span>
+                    </div>
+                    <div class="ups">
+                        <div class="ups-item"><span>A相电压：</span><span>220.5</span>V</div>
+                        <div class="ups-item"><span>A相电流：</span><span>12.5</span>A</div>
+                        <div class="ups-item"><span>B相电压：</span><span>220.5</span>V</div>
+                        <div class="ups-item"><span>B相电流：</span><span>12.5</span>A</div>
+                        <div class="ups-item"><span>C相电压：</span><span>220.5</span>V</div>
+                        <div class="ups-item"><span>C相电流：</span><span>12.5</span>A</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
