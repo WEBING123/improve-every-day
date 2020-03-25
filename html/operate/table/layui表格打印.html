@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .printBtn {
+            display: flex;
+            align-content: center;
+            justify-content: center;
+        }
+    </style>
+
+    <link rel="stylesheet" href="../../../frame/layui/css/layui.css">
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script src="../../../frame/lodop/LodopFuncs.js"></script>
+    <script src="../../../frame/layui/layui.js"></script>
+    <script>
+        layui.use(['form', 'table'], function () {
+            var form = layui.form;
+            var table = layui.table;
+            form.render();
+
+            table.render({
+                elem: '#table',
+                url: "../../../data/layuiTable.json",
+                cols: [
+                    [{      title: '序号',
+                            type: 'numbers',
+                            rowspan: 2
+                        }, {
+                            field: 'id',
+                            title: 'ID',
+                            rowspan: 2
+                        }, {
+                            field: 'username',
+                            title: '用户名',
+                            rowspan: 2
+                        }, {
+                            field: "sex",
+                            title: '性别',
+                            rowspan: 2
+                        }, {
+                            field: 'city',
+                            title: '城市',
+                            rowspan: 2
+                        }, {
+                            field: 'classify',
+                            title: '职业',
+                            rowspan: 2
+                        },
+                        {
+                            field: "sign",
+                            title: '签名',
+                            rowspan: 2
+                        }
+                    ]
+                ],
+                even: true,
+                page: true
+            })
+        })
+    </script>
+</head>
+
+<object id="LODOP_OB" classid="clsid:2105C259-1E0C-4534-8141-A753534CB4CA" width=0 height=0>
+    <embed id="LODOP_EM" type="application/x-print-lodop" width=0 height=0></embed>
+</object>
+
+<body>
+    <div class="layui-container">
+        <div class="layui-row" id="layui-table">
+            <link rel="stylesheet" href="../../../frame/layui/css/layui.css">
+            <table class="layui-table" id="table" lay-filter="table"></table>
+        </div>
+    </div>
+
+    <div class="printBtn">
+        <button onclick="prn1_preview()" type="button" class="layui-btn layui-btn-normal">PRINT</button>
+    </div>
+    <script language="JavaScript">
+        var LODOP;
+
+        function refreshData() { //让innerHTML获取的内容包含input和select(option)的最新值
+            var allInputObject = document.body.getElementsByTagName("input");
+            for (i = 0; i < allInputObject.length; i++) {
+                if (allInputObject[i].type == "checkbox") {
+                    if (allInputObject[i].checked)
+                        allInputObject[i].setAttribute("checked", "checked");
+                    else
+                        allInputObject[i].removeAttribute("checked");
+                } else if (allInputObject[i].type == "radio") {
+                    if (allInputObject[i].checked)
+                        allInputObject[i].setAttribute("checked", "checked");
+                    else
+                        allInputObject[i].removeAttribute("checked");
+                } else allInputObject[i].setAttribute("value", allInputObject[i].value);
+            };
+            for (i = 0; i < document.getElementsByTagName("select").length; i++) {
+                var sl = document.getElementsByTagName("select")[i];
+                for (j = 0; j < sl.options.length; j++) {
+                    if (sl.options[j].selected)
+                        sl.options[j].setAttribute("selected", "selected");
+                    else sl.options[j] = new Option(sl.options[j].text, sl.options[j].value);
+                };
+            };
+        };
+
+        function prn1_preview() {
+            refreshData();
+            CreateOneFormPage();
+            LODOP.PREVIEW();
+        };
+
+        function CreateOneFormPage() {
+            LODOP = getLodop();
+            LODOP.PRINT_INIT("打印控件功能演示_Lodop功能_表单一");
+
+            var strBodyStyle =
+                "<style>table tr th,table tr td {border:1px solid #000000 !important; text-align: center !important;} .layui-table-page {display: none;} .layui-table-body {margin-top: -1px !important;} .layui-table-header>table, .layui-table-body>table {width: 100% !important;} .layui-table-header>table tr th {width: 14.285% !important;} .layui-table-body>table tr td {width: 14% !important;}";
+
+
+            LODOP.SET_PRINT_PAGESIZE(2, "", "", "");
+            LODOP.SET_PRINT_STYLEA(0, "ItemType", 2);
+            LODOP.SET_PRINT_STYLEA(0, "Horient", 2);
+            LODOP.SET_PRINT_STYLEA(0, "Vorient", 2);
+            LODOP.SET_PRINT_MODE("PRINT_PAGE_PERCENT", 'Auto-Width'); //按整宽且不变形，即按整宽的同时，高度与之同比。
+            //LODOP.SET_PRINT_STYLE("border",1);
+
+            LODOP.SET_SHOW_MODE("LANDSCAPE_DEFROTATED", 1); //横向时的正向显示
+
+
+            LODOP.ADD_PRINT_HTM(10, 10, '98%', '100%', document.getElementById("layui-table").innerHTML + strBodyStyle);
+        };
+    </script>
+</body>
+
+</html>

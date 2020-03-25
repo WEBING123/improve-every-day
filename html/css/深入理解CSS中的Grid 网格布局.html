@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+        }
+
+        h2 {
+            margin-bottom: 50px;
+            font-style: italic;
+            text-align: center;
+        }
+
+        p {
+            line-height: 50px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-rows: 200px;
+            margin: 50px 0;
+        }
+        .container1 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .container2 {
+            grid-template-columns: 1fr 2fr 1fr;
+        }
+        .item {border-radius: 10px;}
+        .item1,.item4 {background-color: #55efc4;}
+        .item2,.item5 {background-color: #0984e3;}
+        .item3,.item6 {background-color: #ff7675;}
+    </style>
+</head>
+
+<body>
+    <h2>深入理解CSS中的Grid 网格布局</h2>
+    <div class="container container1">
+        <div class="item item1"></div>
+        <div class="item item2"></div>
+        <div class="item item3"></div>
+    </div>
+
+    <div class="container container2">
+        <div class="item item4"></div>
+        <div class="item item5"></div>
+        <div class="item item6"></div>
+    </div>
+</body>
+
+</html>
