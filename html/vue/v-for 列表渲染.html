@@ -40,10 +40,24 @@
 
         #vue-app {
             flex-direction: row;
+            flex-wrap: wrap;
         }
 
         .alert {
             flex-direction: column;
+        }
+
+        .liStyle {width: 80%;}
+
+        .liStyle ul li {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .liStyle ul li div {
+            width: 33.3%;
+            padding: 5px 0;
+            text-align: center;
         }
     </style>
 </head>
@@ -62,12 +76,28 @@
                 <li v-for="count in 5"> {{ count }} </li>
             </ul>
         </div>
+
+        <div class="liStyle alert-success">
+            <ul>
+                <li>
+                    <div>序号</div>
+                    <div>地区</div>
+                    <div>确诊</div>
+                </li>
+                <li v-for="yq in epidemic">
+                    <div> {{yq.id}} </div>
+                    <div> {{yq.area}} </div>
+                    <div> {{yq.num}} </div>
+                </li>
+            </ul>
+        </div>
     </div>
 
     <script>
         new Vue({
             el: "#vue-app",
             data: {
+                liStyle: 'liStyle',
                 name: "登高",
                 items: [{
                         message: "风急天高猿啸哀，渚清沙白鸟飞回。"
@@ -81,7 +111,14 @@
                     {
                         message: "艰难苦恨繁霜鬓，潦倒新停浊酒杯。"
                     }
-                ]
+                ],
+                epidemic: [
+                    {id: 1, area: "美国", num: 155537},
+                    {id: 2, area: "意大利", num: 75528},
+                    {id: 3, area: "西班牙", num: 63460},
+                    {id: 4, area: "德国", num: 49940},
+                    {id: 5, area: "法国", num: 34176}
+                    ]
             },
             methods: {}
         })
