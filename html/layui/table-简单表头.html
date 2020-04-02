@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../frame/layui/css/layui.css">
+    <style>
+        table tr th,
+        table tr td {
+            text-align: center !important;
+        }
+
+        .bgcolor1 {
+            background-color: #daeffd;
+        }
+
+        .bgcolor2 {
+            background-color: #fde4d9;
+        }
+    </style>
+</head>
+
+<body>
+    <table class="layui-table" id="layTable" lay-filter="layTable"></table>
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script src="../../frame/layui/layui.js"></script>
+    <script>
+        layui.use(['form', 'table'], function () {
+            var form = layui.form;
+            var table = layui.table;
+            form.render();
+
+            table.render({
+                elem: '#layTable',
+                url: "../../data/complexHeader.json",
+                cols: [
+                    [{
+                        field: 'numbers',
+                        title: '序号',
+                        minWidth: 90,
+                        rowspan: 4
+                    }, {
+                        field: '',
+                        title: '隐患清单',
+                        colspan: 7
+                    }, {
+                        field: '',
+                        title: '整改清单',
+                        colspan: 5
+                    }],
+                    [
+                        // 第二行
+                        {
+                            field: 'XXX',
+                            title: '发现隐患日期',
+                            minWidth: 150,
+                            rowspan: 3
+                        }, {
+                            field: 'XXX',
+                            title: '地点',
+                            minWidth: 120,
+                            rowspan: 3
+                        },
+                        {
+                            field: 'XXX',
+                            title: '当事人',
+                            minWidth: 150,
+                            rowspan: 3
+                        }, {
+                            field: 'XXX',
+                            title: '隐患描述',
+                            minWidth: 120,
+                            rowspan: 3
+                        },
+                        {
+                            field: 'XXX',
+                            title: '隐患因素',
+                            minWidth: 150,
+                            rowspan: 3
+                        }, {
+                            field: 'XXX',
+                            title: '隐患类别',
+                            minWidth: 120,
+                            rowspan: 3
+                        },
+                        {
+                            field: 'XXX',
+                            title: '检查人',
+                            minWidth: 120,
+                            rowspan: 3
+                        },
+                        // 整改清单 - 第二行
+                        {
+                            field: 'XXX',
+                            title: '当场整改',
+                            rowspan: 3
+                        }, {
+                            field: '',
+                            title: '限期整改',
+                            minWidth: 120,
+                            colspan: 4
+                        }
+                    ],
+                    [
+                        // 整改清单 - 限期整改 - 第三行
+                        {
+                            field: 'XXX',
+                            title: '限期整改日期',
+                            minWidth: 90,
+                            rowspan: 2
+                        }, {
+                            field: 'XXX',
+                            title: '整改完成日期',
+                            minWidth: 90,
+                            rowspan: 2
+                        },
+                        {
+                            field: 'XXX',
+                            title: '移送日期',
+                            minWidth: 90,
+                            rowspan: 2
+                        }, {
+                            field: 'XXX',
+                            title: '复查人',
+                            minWidth: 90,
+                            rowspan: 2
+                        }
+                    ]
+                ],
+                even: true,
+                page: true
+            })
+
+        })
+    </script>
+</body>
+
+</html>
