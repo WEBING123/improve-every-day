@@ -9,56 +9,17 @@
     <link rel="stylesheet" href="../../frame/bootstrap/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-
-        html,
-        body,
-        #vue-app {
-            height: 100%;
-            width: 100%;
-        }
-
-        ul,
-        li {
-            list-style: none;
-        }
-
-        li {
-            line-height: 30px;
-            font-size: 15px;
-        }
-
-        #vue-app,
-        .alert {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        #vue-app {
-            flex-direction: row;
-            flex-wrap: wrap;
-        }
-
-        .alert {
-            flex-direction: column;
-        }
-
-        .liStyle {width: 80%;}
-
-        .liStyle ul li {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .liStyle ul li div {
-            width: 33.3%;
-            padding: 5px 0;
-            text-align: center;
-        }
+        * {margin: 0;padding: 0;}
+        html, body, #vue-app {height: 100%; width: 100%;}
+        ul, li {list-style: none;}
+        li {line-height: 30px; font-size: 15px;}
+        #vue-app, .alert {display: flex; justify-content: center; align-items: center;}
+        #vue-app {flex-direction: column; flex-wrap: wrap;}
+        .alert {flex-direction: column;}
+        .liStyle {width: 20%;}
+        .liStyle ul li {display: flex; justify-content: center; align-items: center;}
+        .liStyle ul li div {width: 33.3%; padding: 5px 0; text-align: center;}
+        .alert-info {padding: 20px; display: flex; justify-content: center; align-items: center; flex-direction: column; align-content: space-around;}
     </style>
 </head>
 
@@ -75,6 +36,12 @@
             <ul>
                 <li v-for="count in 5"> {{ count }} </li>
             </ul>
+        </div>
+
+        <div class="alert-info">
+            <input v-model="inputSecondValue" type="text" class="form-control" placeholder="edit second number">
+            <input v-model="inputResultValue" type="text" class="form-control" placeholder="result">
+            <button type="button" class="btn btn-primary" @click="calc">=</button>
         </div>
 
         <div class="liStyle alert-success">
@@ -112,13 +79,32 @@
                         message: "艰难苦恨繁霜鬓，潦倒新停浊酒杯。"
                     }
                 ],
-                epidemic: [
-                    {id: 1, area: "美国", num: 155537},
-                    {id: 2, area: "意大利", num: 75528},
-                    {id: 3, area: "西班牙", num: 63460},
-                    {id: 4, area: "德国", num: 49940},
-                    {id: 5, area: "法国", num: 34176}
-                    ]
+                epidemic: [{
+                        id: 1,
+                        area: "美国",
+                        num: 155537
+                    },
+                    {
+                        id: 2,
+                        area: "意大利",
+                        num: 75528
+                    },
+                    {
+                        id: 3,
+                        area: "西班牙",
+                        num: 63460
+                    },
+                    {
+                        id: 4,
+                        area: "德国",
+                        num: 49940
+                    },
+                    {
+                        id: 5,
+                        area: "法国",
+                        num: 34176
+                    }
+                ]
             },
             methods: {}
         })
