@@ -30,6 +30,18 @@
         <input type="text" name="" autocomplete="off" placeholder="请输入" class="layui-input">
     </script>
 
+    <script type="text/html" id="switchTpl">
+        <!-- 这里的 checked 的状态只是演示 -->
+    <input type="checkbox" name="sex" value="{{d.id}}" lay-skin="switch" lay-text="女|男" lay-filter="sexDemo"
+        {{ d.id == 10003 ? 'checked' : '' }}>
+    </script>
+
+    <script type="text/html" id="checkboxTpl">
+        <!-- 这里的 checked 的状态只是演示 -->
+    <input type="checkbox" name="lock" value="{{d.id}}" title="锁定" lay-filter="lockDemo"
+        {{ d.id == 10006 ? 'checked' : '' }}>
+    </script>
+
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
     <script src="../../frame/layui/layui.js"></script>
     <script>
@@ -74,12 +86,14 @@
                             field: 'XXX',
                             title: '当事人',
                             minWidth: 150,
-                            rowspan: 3
+                            rowspan: 3,
+                            templet: '#switchTpl'
                         }, {
                             field: 'XXX',
                             title: '隐患描述',
                             minWidth: 120,
-                            rowspan: 3
+                            rowspan: 3,
+                            templet: '#checkboxTpl',
                         },
                         {
                             field: 'XXX',
