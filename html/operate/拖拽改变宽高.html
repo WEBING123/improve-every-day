@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #div {
+            width: 300px;
+            height: 300px;
+            background-color: #0984e3;
+            cursor: e-resize;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div"></div>
+    <script>
+        var oDiv = document.getElementById("div");
+        oDiv.onmousedown = function (ev) { //鼠标按下时保存当前鼠标的位置和元素的offset之间的差值
+            ev = ev || event;
+            var disX = ev.clientX - oDiv.offsetLeft;
+            var disY = ev.clientY - oDiv.offsetTop;
+            var oldX = ev.clientX;
+            var oldY = ev.clientY;
+            document.onmousemove = function (ev) { //鼠标移动时赋予元素新的位置和宽度
+                ev = ev || event;
+                if (disX <= 20) { //当鼠标向左拖动时
+                    oDiv.style.left = oDiv.offsetLeft + (ev.clientX - oldX) +
+                    'px'; //元素当前的left值（此时ev.clientX - oldX为负值）
+                    oDiv.style.width = oDiv.offsetWidth - (ev.clientX - oldX) + 'px'; //元素当前的宽度
+                } else if (disX >= (oDiv.offsetWidth - 20)) { //当鼠标向右拖动时
+                    oDiv.style.width = oDiv.offsetWidth + (ev.clientX - oldX) + 'px';
+                    disX = ev.clientX - oDiv.offsetLeft;
+                }
+                if (disY <= 20) { //当鼠标向上拖动时（此时ev.clientX - oldX为负值）
+                    oDiv.style.top = oDiv.offsetTop + (ev.clientY - oldY) + 'px';
+                    oDiv.style.height = oDiv.offsetHeight - (ev.clientY - oldY) + 'px';
+                } else if (disY >= (oDiv.offsetHeight - 20)) { //当鼠标向下拖动时
+                    oDiv.style.height = oDiv.offsetHeight + (ev.clientY - oldY) + 'px';
+                    disY = ev.clientY - oDiv.offsetTop;
+                }
+                oldX = ev.clientX;
+                oldY = ev.clientY;
+            }
+            document.onmouseup = function () {
+                document.onmouseup = document.onmousemove = null;
+            }
+        }
+    </script>
+</body>
+
+</html>
