@@ -1,57 +1,48 @@
-﻿<html>
+﻿<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <title>平台版跨浏览器最精简示例</title>
-	<script type="text/javascript">
-		var TANGER_OCX_OBJ;
-		
-		function init()
-		{
-			TANGER_OCX_OBJ=document.getElementById("TANGER_OCX");
-		
-			
-          
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        var TANGER_OCX_OBJ;
 
-			TANGER_OCX_OBJ.activate(true);
-			
-			if(window.navigator.platform=="Win64"){
-			TANGER_OCX_OBJ.AddDocTypePlugin(".tif","tif.NtkoDocument","4.0.0.2","officecontrol/ntkooledocallx64.cab",51,true);	
-			TANGER_OCX_OBJ.AddDocTypePlugin(".pdf","PDF.NtkoDocument","4.0.0.2","officecontrol/ntkooledocallx64.cab",51,true);	
-			
-			}else{
-			  	TANGER_OCX_OBJ.AddDocTypePlugin(".pdf","PDF.NtkoDocument","4.0.0.2","officecontrol/ntkooledocall.cab",51,true);
-				TANGER_OCX_OBJ.AddDocTypePlugin(".tif","tif.NtkoDocument","4.0.0.2","officecontrol/ntkooledocall.cab",51,true);	
-			}
-			
-		// TANGER_OCX_OBJ.OpenFromURL("abcd.doc");
-        // function TANGER_OCX_EnableFileSaveMenu(boolvalue) {
-        //     TANGER_OCX_OBJ.FileSave = true;
-        //     TANGER_OCX_OBJ.ShowDialog(3);
-        // }
-		
-        TANGER_OCX_OBJ.ShowDialog(1);
-        TANGER_OCX_OBJ.SaveToLocal("test.doc",true);
-		  
-		}
+        function init() {
+            TANGER_OCX_OBJ = document.getElementById("TANGER_OCX");
 
-		
-		
-		
-	</script>
-	
+            TANGER_OCX_OBJ.activate(true);
+
+            if (window.navigator.platform == "Win64") {
+                TANGER_OCX_OBJ.AddDocTypePlugin(".tif", "tif.NtkoDocument", "4.0.0.2",
+                    "officecontrol/ntkooledocallx64.cab", 51, true);
+                TANGER_OCX_OBJ.AddDocTypePlugin(".pdf", "PDF.NtkoDocument", "4.0.0.2",
+                    "officecontrol/ntkooledocallx64.cab", 51, true);
+
+            } else {
+                TANGER_OCX_OBJ.AddDocTypePlugin(".pdf", "PDF.NtkoDocument", "4.0.0.2",
+                    "officecontrol/ntkooledocall.cab", 51, true);
+                TANGER_OCX_OBJ.AddDocTypePlugin(".tif", "tif.NtkoDocument", "4.0.0.2",
+                    "officecontrol/ntkooledocall.cab", 51, true);
+            }
+
+            // TANGER_OCX_OBJ.OpenFromURL("abcd.doc");
+            // function TANGER_OCX_EnableFileSaveMenu(boolvalue) {
+            //     TANGER_OCX_OBJ.FileSave = true;
+            //     TANGER_OCX_OBJ.ShowDialog(3);
+            // }
+
+            TANGER_OCX_OBJ.ShowDialog(1);
+            TANGER_OCX_OBJ.SaveToLocal("test.doc", true);
+
+        }
+    </script>
 </head>
 
 <body onload="init();">
-	<form enctype="multipart/form-data">
-	
-	
-    <script type="text/javascript" src="officecontrol/ntkoofficecontrol.js"></script>
-		
-
-
-	
-	
-	
-	
-  </form>
+    <form enctype="multipart/form-data">
+        <script type="text/javascript" src="officecontrol/ntkoofficecontrol.js"></script>
+    </form>
 </body>
+
 </html>
