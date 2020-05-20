@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+		/* css 重置 */
+		*{margin:0; padding:0; list-style:none; }
+		body{ background:#fff; font:normal 12px/22px 宋体;  }
+
+		/* 本例子css */
+		.scrollBar{ overflow:hidden; position:relative; border:1px solid #ccc; }
+		.scrollBar .hd{ overflow:hidden; height:30px; background:#f4f4f4; padding:0 10px; }
+		.scrollBar .bd{ padding:15px; }
+        .scrollBar .hd ul li, .scrollBar .bd ul li {height:24px; line-height:24px;}
+        .scrollBar .hd ul li span, .scrollBar .bd ul li span {display: inline-block; width: 50%;}
+	</style>
+</head>
+
+<body>
+    <div class="scrollBar">
+        <div class="hd">
+            <ul>
+                <li><span>热搜榜</span><span>要闻榜</span></li>
+            </ul>
+        </div>
+        <div class="bd">
+            <ul class="scrollBarList">
+                <li><span>吴磊情商</span><span>520民政局爆满</span></li>
+                <li><span>小满</span><span>1314少个4 </span></li>
+                <li><span>TOP崔胜铉</span><span>西藏纳木错破冰开湖</span></li>
+                <li><span>百对战疫新人云婚礼直播进行时</span><span>巴勒斯坦停止履行与美国以色列所有协议</span></li>
+                <li><span>罗志祥发长文艾特周扬青</span><span>2020520文案</span></li>
+                <li><span>青春伤痛文学</span><span>520 </span></li>
+                <li><span>和平精英小黄鸭</span><span>李兰娟 今天你们是最美女人最帅男人</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="../../js/jquery.SuperSlide.2.1.3.js"></script>
+    <script type="text/javascript">
+    jQuery(".scrollBar").slide({mainCell:".bd ul",autoPlay:true,effect:"topMarquee",vis:5,interTime:50,trigger:"click"});
+    </script>
+</body>
+
+</html>
