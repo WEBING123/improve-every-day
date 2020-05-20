@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .chart {
+            height: 300px;
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="chart" class="chart"></div>
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script src="../../frame/echart/echarts.min.js"></script>
+    <script src="../../frame/echart/macarons.js"></script>
+    <script>
+        // ------------------------------------ 折线图渐变色 ------------------------------------
+        var chart = echarts.init(document.getElementById('chart'), 'macarons');
+
+        option = {
+            backgroundColor: '##000000',
+            color: ['#8e9ff8', '#8eeaf8', '#ce95f1', '#e99d60', '#6077e9'],
+        title: {
+                text: '2020-05-19日徽水河水质信息',
+                left: 'center',
+                textStyle: {
+                    color: '#fff',
+                    fontSize: 16,
+                    fontFamily : 'PingFangSC-Regular'
+                }
+            },
+        tooltip: {
+        trigger: 'item',
+        // formatter: '{a} <br/>{b}: {c} ({d}%)'
+        formatter: '{b}: {c} ({d}%)'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 10,
+        textStyle: {
+            color: "#fff"
+        },
+        data: ['电导率', '溶解氧', '氨氮', '高锰酸盐指数', '化学需氧量']
+    },
+    series: [
+        {
+            // name: '访问来源',
+            type: 'pie',
+            radius: ['50%', '70%'],
+            center: ['50%', '60%'],
+            avoidLabelOverlap: false,
+            label: {
+                // show: false,
+                // position: 'center'
+                normal: {
+                    formatter: '{b}\n{d}%'
+                }
+            },
+            emphasis: {
+                label: {
+                    show: false,
+                    fontSize: '30',
+                    fontWeight: 'bold'
+                }
+            },
+            labelLine: {
+                show: true
+            },
+            data: [
+                {value: 335, name: '电导率'},
+                {value: 310, name: '溶解氧'},
+                {value: 234, name: '氨氮'},
+                {value: 135, name: '高锰酸盐指数'},
+                {value: 1548, name: '化学需氧量'}
+            ]
+        }
+    ]
+        };
+
+        chart.setOption(option, true);
+        chart.resize();
+    </script>
+</body>
+
+</html>
