@@ -148,7 +148,9 @@
                     show: false
                 },
                 type: 'category',
-                boundaryGap: false,
+                // 坐标轴两边留白策略
+                // 类目轴中在 boundaryGap 为 true 的时候有效，可以保证刻度线和标签对齐。
+                boundaryGap: true,
                 axisLine: {
                     onZero: false
                 },
