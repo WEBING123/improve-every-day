@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../frame/layui/css/layui.css">
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="layui-container">
+        <img src="../../images/bg/mountain.jpg" alt="">
+    </div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+<script src="../../frame/layui/layui.js"></script>
+<script>
+    layui.use('layer', function () {
+        var element = layui.element;
+        var layer = layui.layer;
+        var tips;
+
+        $('img').on({
+            mouseenter: function () {
+                var that = this;
+                tips = layer.tips('<span class="tips">提示消息！</span>', that, {
+                    tips: [1, '#1e90ff'],
+                    time: 0,
+                    area: 'auto'
+                });
+            },
+            mouseleave: function () {
+                layer.close(tips);
+            }
+        });
+    });
+</script>
+
+</html>

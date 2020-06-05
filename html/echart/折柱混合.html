@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .chart {
+            height: 300px;
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="chart" class="chart"></div>
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script src="../../frame/echart/echarts.min.js"></script>
+    <script src="../../frame/echart/macarons.js"></script>
+    <script>
+        // ------------------------------------ 折线图渐变色 ------------------------------------
+        var chart = echarts.init(document.getElementById('chart'), 'macarons');
+
+        option = {
+            title : {
+            text: '白屈港站点24小时雨量和水位变化过程',
+            x: 'center',
+            textStyle:{  
+                fontSize:16,
+                color:'#fff'
+              }
+        },
+        tooltip : {
+            trigger: 'axis'
+        },
+        grid: {  
+            top: '50',
+            left:'8%',
+            right:'10%'
+        },
+        calculable : true,
+        
+        legend: {
+            bottom:0,
+            data:['雨量','水位'],
+            textStyle: {
+                fontSize: 12,
+                color: '#abc3ef'
+            }
+        },
+        xAxis : [
+            {
+                splitLine:{show: false},
+                splitArea : {show : false},
+                type : 'category',
+                axisLine: {
+                   lineStyle: {
+                       type: 'solid',
+                       color:'#abc3ef',
+                       width:'1'
+                    }
+                },
+                   axisLabel: {
+                       textStyle: {
+                           color: '#576582'
+                    }
+                },
+                data : ['15点','18点','21点','00点','03点','06点','09点','12点']
+            }
+        ],
+        yAxis : [
+            {
+                splitLine:{show: false},
+                splitArea : {show : false},
+                type : 'value',
+                inverse: true,
+                position:'right',
+                name : '雨量(mm)',
+                nameGap:25,
+                axisLabel : {
+                    formatter: '{value} mm',
+                },
+                axisLine: {
+                   lineStyle: {
+                       type: 'solid',
+                       color:'#576582',
+                       width:'1'
+                    }
+                },
+                   axisLabel: {
+                       textStyle: {
+                           color: '#576582'
+                    }
+                },
+            },
+            {
+                splitLine:{
+                    show: true,
+                    lineStyle:{
+                        color: ['#576582'],
+                        width: 1,
+                        type: 'solid'
+                    }
+                },
+                splitArea : {show : false},
+                type : 'value',
+                position:'left',
+                name : '水位(m)',
+                axisLabel : {
+                    formatter: '{value} m'
+                },
+                axisLine: {
+                   lineStyle: {
+                       type: 'solid',
+                       color:'#576582',
+                       width:'1'
+                    }
+                },
+                   axisLabel: {
+                       textStyle: {
+                           color: '#576582'
+                    }
+                },
+            }
+        ],
+        series : [
+
+            {
+                name:'雨量',
+                type:'bar',
+                barWidth:20,
+                data:[2.0, 4.9, 7.0, 23.2, 25.6,20.1, 10.3,2.3],
+                itemStyle: {
+                normal:{
+                    
+                    color: new echarts.graphic.LinearGradient(
+                      0, 0, 0, 1,
+                    [
+                       {offset: 0, color: '#8c1ef1'},
+                        {offset: 1, color: '#148ccb'}
+                    ])
+
+                }
+            },
+            },
+            {
+                name:'水位',
+                type:'line',
+                yAxisIndex: 1,
+                smooth:true,
+                symbolSize: 10, 
+                data:[4.2, 4.36, 4.3, 4.2, 4.1, 3.95, 3.85, 3.65],
+                itemStyle:{
+                    normal:{
+                        color: "#07ebbd"
+                    }
+                }
+            }
+        ]
+        };
+
+        chart.setOption(option, true);
+        chart.resize();
+    </script>
+</body>
+
+</html>
