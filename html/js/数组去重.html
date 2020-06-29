@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 数组去重
+        // var arr1 = [1, 2, 3, 2, 3, 4, 1, 5];
+        // var arr2 = [1, 2, 3, 2, 3, 4, 1, 5];
+
+        // function norepeat1(arr1) {
+        //     return Array.from(new Set(arr1));
+        // }
+        // console.log(norepeat1(arr1));
+
+        // function norepeat2(arr2) {
+        //     var res = arr2.filter(function (item, index, arr2) {
+        //         return arr2.indexOf(item) === index;
+        //     })
+        //     return res;
+        // }
+        // console.log(norepeat2(arr2));
+
+        // -----------------------------------------------------------
+        function loadScript(url, callback) {
+            var script = document.createElement("script")
+
+            if (script.readyState) { //IE
+                console.log("IE");
+            } else { //Others: Firefox, Safari, Chrome, and Opera
+                console.log("Others");
+            }
+
+            document.body.appendChild(script);
+        }
+
+        loadScript('https://www.baidu.com/', function () {
+            alert("ok");
+        })
+    </script>
+</body>
+
+</html>
