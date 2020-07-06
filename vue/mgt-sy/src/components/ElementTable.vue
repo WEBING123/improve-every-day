@@ -63,6 +63,7 @@
         </el-header>
 
         <el-main>
+          <!-- search -->
           <el-row :gutter="20">
             <el-col :span="10">
               <el-input placeholder="请输入内容" v-model="input" class="input-with-select">
@@ -74,6 +75,7 @@
             </el-col>
           </el-row>
 
+          <!-- table -->
           <el-table :data="channels" style="width: 100%">
             <el-table-column type="index"></el-table-column>
             <el-table-column prop="channelId" label="channelId"></el-table-column>
@@ -94,6 +96,17 @@
               </template>
             </el-table-column>
           </el-table>
+
+          <!-- page -->
+          <el-pagination
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+            :current-page="currentPage4"
+            :page-sizes="[100, 200, 300, 400]"
+            :page-size="100"
+            layout="total, sizes, prev, pager, next, jumper"
+            :total="400"
+          ></el-pagination>
         </el-main>
       </el-container>
     </el-container>
@@ -113,8 +126,20 @@ export default {
   async created() {
     var result = await getNewsChannels();
     this.channels = result.data.showapi_res_body.channelList;
+    // channels 是数组，无需for循环添加
+    console.log(this.channels);
     this.total = result.data.showapi_res_body.totalNum;
-  }
+  },
+  methods: {
+    // 监听 pagesize 改变的事件
+      handleSizeChange(newSize) {
+          console.log(newSize);
+      },
+    //   监听 页码值 改变的事件
+      handleCurrentChange() {
+
+      }
+  },
 };
 </script>
 
