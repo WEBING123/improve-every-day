@@ -76,18 +76,19 @@
           </el-row>
 
           <!-- table -->
-          <el-table :data="channels" style="width: 100%">
+          <el-table :data="tableData" style="width: 100%">
             <el-table-column type="index"></el-table-column>
             <el-table-column prop="channelId" label="channelId"></el-table-column>
-            <el-table-column prop="name" label="名称"></el-table-column>
+            <el-table-column prop="channelName" label="名称"></el-table-column>
+            <el-table-column prop="content" label="内容" :show-overflow-tooltip="true"></el-table-column>
             <!-- 作用域插槽渲染状态列 -->
-            <!-- <el-table-column prop="state" label="状态">
-            <template slot-scope="scope">-->
-            <!-- 显示当前行的所有数据 -->
-            <!-- {{ scope.row }}
+            <el-table-column label="有无图片">
+              <template slot-scope="scope">
+                <!-- 显示当前行的所有数据 -->
+                <!-- {{ scope.row }} -->
+                <el-switch v-model="scope.row.havePic"></el-switch>
               </template>
-              <el-switch v-model="scope.row.state"></el-switch>
-            </el-table-column>-->
+            </el-table-column>
             <el-table-column label="操作">
               <template slot-scope="scope">
                 <el-button type="primary" icon="el-icon-edit"></el-button>
@@ -114,32 +115,34 @@
 </template>
 
 <script>
-import { getNewsChannels } from "../services/newsServices";
+// import { getNewsChannels } from "../services/newsServices";
+import { getNews } from "../services/newsServices";
 export default {
   data() {
     return {
       input: "",
-      channels: [],
-      total: 0
+      tableData: [],
+      total: 0,
+      channelId: "5572a108b3cdc86cf39001cd"
     };
   },
   async created() {
-    var result = await getNewsChannels();
-    this.channels = result.data.showapi_res_body.channelList;
-    // channels 是数组，无需for循环添加
-    console.log(this.channels);
-    this.total = result.data.showapi_res_body.totalNum;
+    var result = await getNews(this.channelId);
+    this.tableData = result.contentlist;
+    // tableData 是数组，无需for循环添加
+    console.log(this.tableData);
+    this.total = result.allNum;
   },
   methods: {
     // 监听 pagesize 改变的事件
-      handleSizeChange(newSize) {
-          console.log(newSize);
-      },
-    //   监听 页码值 改变的事件
-      handleCurrentChange() {
-
-      }
-  },
+    handleSizeChange(newSize) {
+      console.log(newSize);
+    },
+    // 监听 页码值 改变的事件
+    handleCurrentChange() {},
+    //
+    currentPage4() {}
+  }
 };
 </script>
 
