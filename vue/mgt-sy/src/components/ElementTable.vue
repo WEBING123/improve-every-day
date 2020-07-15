@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-container style="height: 500px; border: 1px solid #eee">
+    <el-container style="height: 100%; border: 1px solid #eee">
       <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
         <el-menu :default-openeds="['1', '3']">
           <el-submenu index="1">
@@ -76,7 +76,7 @@
           </el-row>
 
           <!-- table -->
-          <el-table :data="tableData" style="width: 100%">
+          <el-table :data="tableData" border height="500" style="width: 100%; margin-top: 20px;">
             <el-table-column type="index"></el-table-column>
             <el-table-column prop="channelId" label="channelId"></el-table-column>
             <el-table-column prop="channelName" label="名称"></el-table-column>
@@ -99,15 +99,9 @@
           </el-table>
 
           <!-- page -->
-          <el-pagination
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-            :current-page="currentPage4"
-            :page-sizes="[100, 200, 300, 400]"
-            :page-size="100"
-            layout="total, sizes, prev, pager, next, jumper"
-            :total="400"
-          ></el-pagination>
+          <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
+            :current-page="currentPage" :page-sizes="[100, 200, 300, 400]" :page-size="100"
+            layout="total, sizes, prev, pager, next, jumper" :total="400"></el-pagination>
         </el-main>
       </el-container>
     </el-container>
@@ -115,45 +109,141 @@
 </template>
 
 <script>
-// import { getNewsChannels } from "../services/newsServices";
-import { getNews } from "../services/newsServices";
-export default {
-  data() {
-    return {
-      input: "",
-      tableData: [],
-      total: 0,
-      channelId: "5572a108b3cdc86cf39001cd"
-    };
-  },
-  async created() {
-    var result = await getNews(this.channelId);
-    this.tableData = result.contentlist;
-    // tableData 是数组，无需for循环添加
-    console.log(this.tableData);
-    this.total = result.allNum;
-  },
-  methods: {
-    // 监听 pagesize 改变的事件
-    handleSizeChange(newSize) {
-      console.log(newSize);
+  // import { getNewsChannels } from "../services/newsServices";
+  import { getNews } from "../services/newsServices";
+  export default {
+    data() {
+      return {
+        input: "",
+        // tableData: [],
+        tableData: [{
+          date: '2016-05-02',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1517 弄'
+        }, {
+          date: '2016-05-01',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1519 弄'
+        }, {
+          date: '2016-05-03',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1516 弄'
+        }, {
+          date: '2016-05-02',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1517 弄'
+        }, {
+          date: '2016-05-01',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1519 弄'
+        }, {
+          date: '2016-05-03',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1516 弄'
+        }, {
+          date: '2016-05-02',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1517 弄'
+        }, {
+          date: '2016-05-01',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1519 弄'
+        }, {
+          date: '2016-05-03',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1516 弄'
+        }, {
+          date: '2016-05-02',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1517 弄'
+        }, {
+          date: '2016-05-01',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1519 弄'
+        }, {
+          date: '2016-05-03',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1516 弄'
+        }, {
+          date: '2016-05-02',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1517 弄'
+        }, {
+          date: '2016-05-01',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1519 弄'
+        }, {
+          date: '2016-05-03',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1516 弄'
+        }, {
+          date: '2016-05-02',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1517 弄'
+        }, {
+          date: '2016-05-01',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1519 弄'
+        }, {
+          date: '2016-05-03',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1516 弄'
+        }],
+        total: 0,
+        channelId: "5572a108b3cdc86cf39001cd",
+        currentPage: 1
+      };
     },
-    // 监听 页码值 改变的事件
-    handleCurrentChange() {},
-    //
-    currentPage4() {}
-  }
-};
+    async created() {
+      var result = await getNews(this.channelId);
+      this.tableData = result.contentlist;
+      // tableData 是数组，无需for循环添加
+      console.log(this.tableData);
+      this.total = result.allNum;
+    },
+    methods: {
+      // 监听 pagesize 改变的事件
+      handleSizeChange(newSize) {
+        console.log(newSize);
+      },
+      // 监听 页码值 改变的事件
+      handleCurrentChange() { }
+    }
+  };
 </script>
 
 <style scoped>
-.el-header {
-  background-color: #b3c0d1;
-  color: #333;
-  line-height: 60px;
-}
+  .el-header {
+    background-color: #b3c0d1;
+    color: #333;
+    line-height: 60px;
+  }
 
-.el-aside {
-  color: #333;
-}
+  .el-aside {
+    color: #333;
+  }
 </style>
