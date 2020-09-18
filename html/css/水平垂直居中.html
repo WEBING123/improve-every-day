@@ -107,6 +107,17 @@
             height: 60px;
             background-color: #2ecc71;
         }
+
+        /* 两个元素竖直排列，并相对于其水平垂直居中 */
+        .up-and-down-outer {
+            display: table;
+        }
+
+        .up-and-down-inner {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
     </style>
 </head>
 
@@ -130,6 +141,12 @@
         <li>
             <div class="img-center">
                 <img src="http://temp.im/100x100" />
+            </div>
+        </li>
+        <li class="up-and-down-outer">
+            <div class="up-and-down-inner">
+                <img src="http://temp.im/50x50" />
+                <div><a href="https://www.cnblogs.com/u14e/p/5317501.html">Up and down</a></div>
             </div>
         </li>
     </ul>
