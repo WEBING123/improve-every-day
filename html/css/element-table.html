@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+  <style>
+    html,
+    body,
+    #app {
+      width: 100%;
+      height: 100%;
+    }
+
+    #app {
+      background-color: #000000;
+    }
+
+    .el-table,
+    .el-table__expanded-cell {
+      /* background-color: #000000; */
+      background: none;
+      background-image: url('../../images/bg/table.png');
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      /* background-size: cover; */
+    }
+
+    .el-table--border::after,
+    .el-table--group::after,
+    .el-table::before {
+      /* background-color: #000000; */
+      background: none;
+    }
+
+    .el-table th,
+    .el-table tr {
+      /* background-color: #000000; */
+      background: none;
+    }
+
+    .el-table--enable-row-hover .el-table__body tr:hover>td {
+      background: none;
+    }
+
+    .el-table td,
+    .el-table th.is-leaf {
+      border-bottom: none;
+    }
+
+    .el-table {
+      width: 422px;
+    }
+
+    /* Firefox */
+    .el-table__body-wrapper {
+      scrollbar-color: transparent transparent;
+      scrollbar-track-color: transparent;
+      -ms-scrollbar-track-color: transparent;
+    }
+
+    .el-table__body-wrapper::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+
+    .el-table__body-wrapper::-webkit-scrollbar-thumb {
+      background-color: #999;
+      background-clip: padding-box;
+      min-height: 28px;
+    }
+
+    .el-table__body-wrapper::-webkit-scrollbar-track {
+      background-color: #ddd;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <el-table :data="tableData" height="446">
+      <el-table-column prop="date" label="日期">
+      </el-table-column>
+      <el-table-column prop="name" label="姓名">
+      </el-table-column>
+      <el-table-column prop="address" label="地址">
+      </el-table-column>
+    </el-table>
+  </div>
+</body>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: function () {
+      return {
+        tableData: [{
+          date: '2016-05-03',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-02',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-01',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-08',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-06',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-07',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }]
+      }
+    }
+  })
+</script>
+
+</html>
