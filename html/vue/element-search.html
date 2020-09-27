@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+  <style>
+    html,
+    body,
+    #app {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <el-input v-model="search" placeholder="请输入内容"></el-input>
+    <ul v-for="(item,index) in searchData " :key='index'>
+      <li>{{item.num}}</li>
+    </ul>
+  </div>
+</body>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: function () {
+      return {
+        search: '',
+        list: [{
+          num: 1
+        }, {
+          num: 2
+        }, {
+          num: 3
+        }, {
+          num: 4
+        }]
+      }
+    },
+    methods: {
+    },
+    computed: {
+      searchData: function () {
+        var search = this.search;
+        if (search) {
+          return this.list.filter(function (item) {
+            return Object.keys(item).some(function (key) {
+              return String(item[key]).toLowerCase().indexOf(search) > -1
+            })
+          })
+        }
+
+        return this.list;
+      }
+    }
+  })
+</script>
+
+</html>
