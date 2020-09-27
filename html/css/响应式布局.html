@@ -1,17 +1,127 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
-        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body,
+    #app,
+    .el-row {
+      width: 100%;
+      height: 100%;
+
+    }
+
+    #app {
+      overflow: hidden;
+    }
+
+    .el-col {
+      border-radius: 4px;
+      height: 40%;
+    }
+
+    .bg-purple-dark {
+      background: #99a9bf;
+    }
+
+    .bg-purple {
+      background: #d3dce6;
+    }
+
+    .bg-purple-light {
+      background: #e5e9f2;
+    }
+
+    .grid-content {
+      border-radius: 4px;
+      min-height: 100%;
+    }
+
+    .leftT, .rightT, .leftB, .rightB  {
+      position: absolute;
+    }
+
+    .leftT, .leftB  {
+      left: 20px;
+    }
+
+    .rightT, .rightB  {
+      right: 20px;
+    }
+
+    .leftT, .rightT  {
+      top: 20px;
+    }
+
+    .leftB, .rightB  {
+      bottom: 20px;
+    }
+  </style>
 </head>
 
 <body>
-    <div class="wrap"></div>
+  <div id="app">
+    <el-row :gutter="10">
+      <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6" class="leftT">
+        <div class="grid-content bg-purple"></div>
+      </el-col>
+      <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6" class="rightT">
+        <div class="grid-content bg-purple"></div>
+      </el-col>
+      <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6" class="leftB">
+        <div class="grid-content bg-purple"></div>
+      </el-col>
+      <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6" class="rightB">
+        <div class="grid-content bg-purple"></div>
+      </el-col>
+    </el-row>
+
+  </div>
 </body>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: function () {
+      return {
+      }
+    },
+    methods: {
+      // 重置界面尺寸
+      resizeWindow() {
+        // 基于 1920 设计
+        let uiWidth = 1920;
+        let uiHeight = 1080;
+        // 当前屏幕宽度
+        let htmlWidth = document.documentElement.clientWidth;
+        let htmlHeight = document.documentElement.clientHeight;
+        let fontSize = 12;
+        if (this.oldWidth !== 0 && this.oldWidth !== htmlWidth) {
+          fontSize = htmlWidth / uiWidth;
+        } else {
+          fontSize = htmlHeight / uiHeight;
+        }
+        document.documentElement.style.fontSize = fontSize + "px";
+        this.oldWidth = htmlWidth;
+      },
+    },
+    mounted() {
+      this.resizeWindow();
+      window.addEventListener("resize", this.resizeWindow);
+    },
+    beforeDestroy() {
+      window.removeEventListener("resize", this.resizeWindow);
+    }
+  })
+</script>
 
 </html>
