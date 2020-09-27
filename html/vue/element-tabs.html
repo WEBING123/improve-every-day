@@ -11,17 +11,57 @@
       width: 100%;
       height: 100%;
     }
+
+    .con {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .con-item {
+      width: 80%;
+      margin: 10% auto;
+      border: 2px dotted #f39c12;
+    }
+
+    ul,
+    li {
+      list-style: none;
+    }
+
+    .con-item ul {
+      display: flex;
+    }
+    .con-item ul li {
+      cursor: pointer;
+    }
   </style>
 </head>
 
 <body>
   <div id="app">
-    <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
-      <el-tab-pane label="用户管理" name="first">用户管理</el-tab-pane>
-      <el-tab-pane label="配置管理" name="second">配置管理</el-tab-pane>
-      <el-tab-pane label="角色管理" name="third">角色管理</el-tab-pane>
-      <el-tab-pane label="定时任务补偿" name="fourth">定时任务补偿</el-tab-pane>
-    </el-tabs>
+    <div class="con">
+      <div class="con-item">
+        <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
+          <el-tab-pane label="用户管理" name="first">用户管理</el-tab-pane>
+          <el-tab-pane label="配置管理" name="second">配置管理</el-tab-pane>
+          <el-tab-pane label="角色管理" name="third">角色管理</el-tab-pane>
+          <el-tab-pane label="定时任务补偿" name="fourth">定时任务补偿</el-tab-pane>
+        </el-tabs>
+      </div>
+      <div class="con-item">
+        <ul>
+          <li @click="cur=0" :class="{active:cur==0}">选项一</li>
+          <li @click="cur=1" :class="{active1:cur==1}">选项二</li>
+        </ul>
+        <div>
+          <div v-show="cur==0">内容一</div>
+          <div v-show="cur==1">内容二</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </body>
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
@@ -31,7 +71,8 @@
     el: '#app',
     data: function () {
       return {
-        activeName: 'first'
+        activeName: 'first',
+        cur: 0 //默认选中第一个tab
       }
     },
     methods: {
