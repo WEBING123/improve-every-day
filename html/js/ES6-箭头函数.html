@@ -2,90 +2,101 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
-        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
 
-        ul,
-        li {
-            list-style: none;
-        }
+    ul,
+    li {
+      list-style: none;
+    }
 
-        html,
-        body {
-            width: 100%;
-            height: 100%;
-        }
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
 
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
 
-        h2 {
-            margin-bottom: 50px;
-            font-style: italic;
-        }
+    h2 {
+      margin-bottom: 50px;
+      font-style: italic;
+    }
 
-        p {
-            line-height: 50px;
-        }
+    p {
+      line-height: 50px;
+    }
 
-        .example {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-        }
+    .example {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
 
-        .example li {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 200px;
-            height: 100px;
-            margin: 20px;
-            padding: 2px;
-            border: 2px dotted #f39c12;
-            border-radius: 5px;
-        }
-    </style>
+    .example li {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 200px;
+      height: 100px;
+      margin: 20px;
+      padding: 2px;
+      border: 2px dotted #f39c12;
+      border-radius: 5px;
+    }
+  </style>
 </head>
 
 <body>
-    <h2>ES6-箭头函数</h2>
+  <!-- <h2>ES6-箭头函数</h2> -->
 
-    <script type="text/javascript">
-        var arr = [1, 2, 3, 4, 5].filter(function (value, index) {
-            return value >= 3
-        })
-        // [3, 4, 5]
+  <script type="text/javascript">
+    var originalArr = [1, 2, 3, 4, 5];
+    
+    var arr = [1, 2, 3, 4, 5].filter(function (value, index) {
+      return value >= 3
+    })
+    // [3, 4, 5]
 
-        // 第一步：去掉 function 关键字，加 =>
-        var arr2 = [1, 2, 3, 4, 5].filter((value, index) => {
-            return value >= 3
-        })
+    // 第一步：去掉 function 关键字，加 =>
+    var arr2 = [1, 2, 3, 4, 5].filter((value, index) => {
+      return value >= 3
+    })
 
-        // 第二步：只保留使用的变量：若只有一个变量，括号 “()”可省略
-        var arr3 = [1, 2, 3, 4, 5].filter((value) => {
-            return value >= 3
-        })
+    // 第二步：只保留使用的变量：若只有一个变量，括号 “()”可省略
+    var arr3 = [1, 2, 3, 4, 5].filter((value) => {
+      return value >= 3
+    })
+    // =>
+    var arr4 = [1, 2, 3, 4, 5].filter(value => {
+      return value >= 3
+    })
 
-        console.log(arr);
-        console.log(arr2);
-        console.log(arr3);
-    </script>
+    // 第三步：当箭头函数的函数体只有一个 `return` 语句时，可以省略 `return` 关键字和方法体的花括号
+    var arr5 = originalArr.filter(value => value > 5)
+
+    console.log(arr);
+    console.log(arr2);
+    console.log(arr3);
+    console.log(arr4);
+    console.log(arr5);
+  </script>
 </body>
 
 </html>
