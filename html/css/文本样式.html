@@ -2,87 +2,101 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <style>
-        p {
-            width: 500px;
-            padding: 5px;
-            border: 1px solid #00a8ff;
-            border-radius: 5px;
-            font-size: 14px;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    p {
+      width: 50%;
+      padding: 5px;
+      border: 1px solid #00a8ff;
+      border-radius: 5px;
+      font-size: 14px;
+    }
 
-        img {
-            width: 300px;
-            vertical-align: middle;
-        }
+    img {
+      width: 300px;
+      vertical-align: middle;
+    }
 
-        .p2 {
-            text-align: justify;
-            /* IE6-8 */
-            text-justify: distribute-all-lines;
-            /* 一块或一行的最后一行的对齐方式 */
-            text-align-last: justify;
-            -moz-text-align-last: justify;
-            -webkit-text-align-last: justify;
-        }
+    .p2 {
+      text-align: justify;
+      /* IE6-8 */
+      text-justify: distribute-all-lines;
+      /* 一块或一行的最后一行的对齐方式 */
+      text-align-last: justify;
+      -moz-text-align-last: justify;
+      -webkit-text-align-last: justify;
+    }
 
-        .p3 {
-            width: 25px;
-            height: auto;
-            padding: 8px 5px;
-            line-height: 18px;
-            font-size: 14px;
-            text-align: center;
-            word-wrap: break-word;
-            /*英文，自动换行*/
-        }
+    .p3 {
+      width: 25px;
+      height: auto;
+      padding: 8px 5px;
+      line-height: 18px;
+      font-size: 14px;
+      text-align: center;
+      word-wrap: break-word;
+      /*英文，自动换行*/
+    }
 
-        .p4 {
-            height: 84px;
-            line-height: 30px;
-            text-align: justify;
-            /* 从左向右 */
-            writing-mode: vertical-lr;
-            /* IE从左向右 */
-            writing-mode: tb-lr;
-            /* 从右向左 */
-            /* writing-mode: vertical-rl; */
-            /* 从右向左 */
-            /* writing-mode: tb-rl; */
-        }
+    .p4 {
+      height: 84px;
+      line-height: 30px;
+      text-align: justify;
+      /* 从左向右 */
+      writing-mode: vertical-lr;
+      /* IE从左向右 */
+      writing-mode: tb-lr;
+      /* 从右向左 */
+      /* writing-mode: vertical-rl; */
+      /* 从右向左 */
+      /* writing-mode: tb-rl; */
+    }
 
-        .p5 {
-            filter: alpha(opacity=50);
-            -moz-opacity: 0.5;
-            -khtml-opacity: 0.5;
-            opacity: 0.5;
-        }
+    .p5 {
+      filter: alpha(opacity=50);
+      -moz-opacity: 0.5;
+      -khtml-opacity: 0.5;
+      opacity: 0.5;
+    }
 
-        .p6 {
-            color: #e84118;
-            /* border: 5px solid currentColor; */
-            border: 1px solid;
-        }
-    </style>
+    .p6 {
+      color: #e84118;
+      /* border: 5px solid currentColor; */
+      border: 1px solid;
+    }
+
+    .p7 {
+      font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, 微软雅黑, Arial, sans-serif;
+    }
+  </style>
 </head>
 
 <body>
-    <p class="p1"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam, sunt dicta fuga, voluptatem temporibus
-        tempore
-        aperiam soluta illum consectetur, illo mollitia eum sapiente perferendis eligendi? Voluptatum iusto ea
-        temporibus modi.
-    </p>
-    <p class="p2">两端对齐</p>
-    <p class="p3">文字竖向排版</p>
-    <p class="p4">文字竖向排版文字竖向排版文字竖向排版</p>
-    <p class="p5">透明容器透明容器透明容器透明容器透明容器透明容器透明容器透明容器</p>
-    <p class="p6">
-        边框和文字颜色同色
-    </p>
+  <p class="p1"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam, sunt dicta fuga, voluptatem temporibus
+    tempore
+    aperiam soluta illum consectetur, illo mollitia eum sapiente perferendis eligendi? Voluptatum iusto ea
+    temporibus modi.
+  </p>
+  <p class="p2">两端对齐</p>
+  <p class="p3">文字竖向排版</p>
+  <p class="p4">文字竖向排版文字竖向排版文字竖向排版</p>
+  <p class="p5">透明容器透明容器透明容器透明容器透明容器透明容器透明容器透明容器</p>
+  <p class="p6">
+    边框和文字颜色同色
+  </p>
+  <h1><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/font-family">Web 开发技术请参见 CSS（层叠样式表）font-family</a></h1>
+  <p class="p7">Lorem ipsum dolor, sit amet consectetur adipisicing elit. ---------- 汉字无效果</p>
+  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. ---------- 汉字无效果</p>
+  <p style="font-family: Georgia, serif;">好好学习天天向上好好学习天天向上好好学习天天向上 font-family: Georgia, serif;</p>
+  <p style="font-family: sans-serif;">好好学习天天向上好好学习天天向上好好学习天天向上 font-family: sans-serif;</p>
+  <p style="font-family: serif;">好好学习天天向上好好学习天天向上好好学习天天向上 font-family: serif;</p>
+  <p style="font-family: cursive;">好好学习天天向上好好学习天天向上好好学习天天向上 font-family: cursive;</p>
+  <p style="font-family: emoji;">好好学习天天向上好好学习天天向上好好学习天天向上 font-family: emoji;</p>
+  <p style="font-family: math;">好好学习天天向上好好学习天天向上好好学习天天向上 font-family: math;</p>
+  <p style="font-family: fangsong;">好好学习天天向上好好学习天天向上好好学习天天向上 font-family: fangsong;</p>
 </body>
 
 </html>
