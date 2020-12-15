@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>HTML5 Canvas绘制线条入门示例</title>
+</head>
+
+<body>
+
+  <!-- 添加canvas标签，并加上红色边框以便于在页面上查看 -->
+  <canvas id="myCanvas" width="400px" height="300px" style="border: 1px solid red;">
+    您的浏览器不支持canvas标签。
+  </canvas>
+
+  <script type="text/javascript">
+    //获取Canvas对象(画布)   
+    var canvas = document.getElementById("myCanvas");
+    //简单地检测当前浏览器是否支持Canvas对象，以免在一些不支持html5的浏览器中提示语法错误   
+    if (canvas.getContext) {
+      //获取对应的CanvasRenderingContext2D对象(画笔)   
+      var ctx = canvas.getContext("2d");
+
+      //开始一个新的绘制路径   
+      ctx.beginPath();
+      //设置线条颜色为蓝色   
+      ctx.strokeStyle = "blue";
+      //设置路径起点坐标   
+      ctx.moveTo(20, 50);
+      //定义中间点坐标1   
+      ctx.lineTo(60, 50);
+      //定义中间点坐标2   
+      ctx.lineTo(60, 90);
+      //定义中间点坐标3(这是最后一个中间点，也就是终点)   
+      ctx.lineTo(100, 90);
+      //按照绘制路径顺序连接各个坐标点   
+      ctx.stroke();
+      //关闭绘制路径   
+      ctx.closePath();
+      // 注意：如果我们交换一下stroke()和closePath()的调用顺序，则情况完全不一样了。
+      // 由于closePath()先调用，此时绘制路径并没有关闭，那么closePath()将会用直线连接当前端点和起始端点。
+    }   
+  </script>
+</body>
+
+</html>

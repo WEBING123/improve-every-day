@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let obj = { '未完成': 5, '已完成': 8, '待确认': 4, '已取消': 6 };
+    let arr = [];
+    let arr2 = [];
+    let arr3 = [];
+    let arr4 = [];
+
+    // ---------------------------------------- 1、For-In
+    for (const i in obj) {
+      arr.push(obj[i]); // [5, 8, 4, 6]
+    }
+
+    // ---------------------------------------- 
+    // 把一个对象 {'未完成':5, '已完成':8, '待确认':4, '已取消':6}
+    // 转为 [{"未完成":5},{"已完成":8},{"待确认":4},{"已取消":6}]
+    for (const i in obj) {
+      let newObj = {};
+      newObj[i] = obj[i];
+      arr2.push(newObj);
+    }
+    console.log(arr2);
+
+    // ---------------------------------------- 2、For-Of
+    for (const i of Object.keys(obj)) {
+      arr3.push(i); // ["未完成", "已完成", "待确认", "已取消"]
+      arr4.push(obj[i]); // [5, 8, 4, 6]
+    }
+  </script>
+</body>
+
+</html>
