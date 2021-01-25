@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+  <script>
+    let arr = [
+      { name: 'book', number: 10 },
+      { name: 'paper', number: 10 },
+      { name: 'ruber', number: 10 },
+      { name: 'book', number: 20 },
+      { name: 'paper', number: 40 },
+      { name: 'ruber', number: 50 },
+      { name: 'book', number: 70 },
+      { name: 'paper', number: 80 },
+      { name: 'ruber', number: 90 },
+    ];
+
+    // 第 1 种方法
+    let obj = {};
+    for (let item of arr) {
+      if (!obj[item.name]) obj[item.name] = [];
+      obj[item.name].push(item.number)
+
+    }
+    let newArr = Object.keys(obj).map(key => (
+      { name: key, value: obj[key] }
+    ))
+    console.log(newArr);
+
+    // 第 2 种方法
+    let newArr2 = arr.reduce((ret, {name, number}) => {
+      (ret[name] = ret[name] || {
+        name: name,
+        value: []
+      }).value.push(number)
+      return ret
+    }, {})
+    console.log(Object.values(newArr2));
+
+    // 第 3 种方法（雷同方法 2）
+    const ret = arr.reduce((acc, item) => {
+      if (acc[item.name] === undefined) {
+        acc[item.name] = {
+          name: item.name,
+          value: [item.number]
+        }
+      } else {
+        acc[item.name].value.push(item.number);
+      }
+      return acc
+    }, {})
+
+    console.log(Object.values(ret));
+  </script>
+
+</body>
+
+</html>
