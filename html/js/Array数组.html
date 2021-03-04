@@ -55,11 +55,20 @@
         arr6.splice(0, 0, 'four') // ['four', 'two', 'three']
         console.log(arr6);
 
-        // ---------------------------------------- 3、数组元素排序
+        // ---------------------------------------- 4、数组元素排序
         arr1.sort(function (a, b) {
             return a - b;
         })
         console.log(arr1);
+
+        // ---------------------------------------- 5、删除数组元素
+        let abc = [1, 2, 3].indexOf(1);
+        if (abc !== -1) {
+            console.log("123");
+        } else {
+            console.log("456");
+        }
+        // 123
     </script>
 </body>
 
