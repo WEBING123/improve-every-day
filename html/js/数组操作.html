@@ -36,7 +36,7 @@
     console.log(newArr);
 
     // 第 2 种方法
-    let newArr2 = arr.reduce((ret, {name, number}) => {
+    let newArr2 = arr.reduce((ret, { name, number }) => {
       (ret[name] = ret[name] || {
         name: name,
         value: []
@@ -59,6 +59,26 @@
     }, {})
 
     console.log(Object.values(ret));
+
+
+    let person = [
+      { id: 0, name: "小明" },
+      { id: 1, name: "小张" },
+      { id: 2, name: "小李" },
+      { id: 3, name: "小孙" },
+      { id: 1, name: "小周" },
+      { id: 2, name: "小陈" },
+    ];
+
+    let objP = {};
+
+    let peon = person.reduce((cur, next) => {
+      objP[next.id] ? "" : objP[next.id] = true && cur.push(next);
+      return cur;
+    }, []) //设置cur默认类型为数组，并且初始值为空的数组
+    console.log(peon);
+// (4) [{…}, {…}, {…}, {…}]0: {id: 0, name: "小明"}1: {id: 1, name: "小张"}2: {id: 2, name: "小李"}3: {id: 3, name: "小孙"}length: 4__proto__: Array(0)
+
   </script>
 
 </body>
