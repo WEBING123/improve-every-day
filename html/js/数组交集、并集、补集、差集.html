@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 形如如下数组
+    let arr1 = [], arr2 = [];
+    arr1 = [
+      {
+        ID: 1,
+        Name: 1,
+        desc: 'Number'
+      },
+      {
+        ID: 2,
+        Name: 2,
+        desc: 'Number'
+      },
+      {
+        ID: 3,
+        Name: 3,
+        desc: 'Number'
+      },
+      {
+        ID: 4,
+        Name: 4,
+        desc: 'Number'
+      },
+      {
+        ID: 5,
+        Name: 5,
+        desc: 'Number'
+      }
+    ]
+    arr2 = [
+      {
+        ID: 5,
+        Name: 5,
+        desc: 'Number'
+      },
+      {
+        ID: 6,
+        Name: 6,
+        desc: 'Number'
+      },
+      {
+        ID: 7,
+        Name: 7,
+        desc: 'Number'
+      },
+      {
+        ID: 8,
+        Name: 8,
+        desc: 'Number'
+      },
+      {
+        ID: 9,
+        Name: 9,
+        desc: 'Number'
+      }
+    ]
+
+    // 交集
+    let intersection = []
+    for (let i = 0, len = arr1.length; i < len; i++) {
+      for (let j = 0, length = arr2.length; j < length; j++) {
+        if (arr1[i].ID === arr2[j].ID) {
+          intersection.push(arr1[i])
+        }
+      }
+    }
+    console.log('交集', intersection);
+
+    // 差集
+    let diff = [...arr1]
+    for (let i = 0, len = arr1.length; i < len; i++) {
+      let flag = false
+      for (let j = 0, length = arr2.length; j < length; j++) {
+        if (arr1[i].ID === arr2[j].ID) {
+          flag = true
+        }
+      }
+      if (flag) {
+        diff.splice(diff.findIndex(item => item.ID === arr1[i].ID), 1)
+      }
+    }
+    console.log('差集', diff)
+  </script>
+
+</body>
+
+</html>
