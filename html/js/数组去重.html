@@ -2,47 +2,60 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
 
 <body>
-    <script>
-        // 数组去重
-        // var arr1 = [1, 2, 3, 2, 3, 4, 1, 5];
-        // var arr2 = [1, 2, 3, 2, 3, 4, 1, 5];
+  <script>
+    // 数组去重
+    var arr1 = [1, 2, 3, 2, 3, 4, 1, 5];
+    var arr2 = [1, 2, 3, 2, 3, 4, 1, 5];
 
-        // function norepeat1(arr1) {
-        //     return Array.from(new Set(arr1));
-        // }
-        // console.log(norepeat1(arr1));
+    function norepeat1(arr1) {
+      return Array.from(new Set(arr1));
+    }
+    console.log(norepeat1(arr1));
 
-        // function norepeat2(arr2) {
-        //     var res = arr2.filter(function (item, index, arr2) {
-        //         return arr2.indexOf(item) === index;
-        //     })
-        //     return res;
-        // }
-        // console.log(norepeat2(arr2));
+    function norepeat2(arr2) {
+      var res = arr2.filter(function (item, index, arr2) {
+        return arr2.indexOf(item) === index;
+      })
+      return res;
+    }
+    console.log(norepeat2(arr2));
 
-        // -----------------------------------------------------------
-        function loadScript(url, callback) {
-            var script = document.createElement("script")
+    // 对象数组的去重，并统计每一项重复次数
+    const list = [
+      { name: 'left', width: 20 },
+      { name: 'left', width: 20 },
 
-            if (script.readyState) { //IE
-                console.log("IE");
-            } else { //Others: Firefox, Safari, Chrome, and Opera
-                console.log("Others");
-            }
+      { name: 'right', width: 10 },
+      { name: 'right', width: 10 },
+      { name: 'right', width: 10 },
 
-            document.body.appendChild(script);
-        }
+      { name: 'center', width: 70 },
+    ];
+    const repeatTime = {};
+    const result = list.reduce((array, item) => {
+      if (repeatTime[item.name]) {
+        repeatTime[item.name]++;
+        return array;
+      }
+      repeatTime[item.name] = 1;
+      return [...array, item];
+    }, []);
 
-        loadScript('https://www.baidu.com/', function () {
-            alert("ok");
-        })
-    </script>
+    console.log(repeatTime);
+    console.log(result);
+    // repeatTime: { left: 2, right: 3, center: 1 }
+    // result: [
+    //   { name: 'left', width: 20 },
+    //   { name: 'right', width: 10 },
+    //   { name: 'center', width: 70 },
+    // ]
+  </script>
 </body>
 
 </html>
