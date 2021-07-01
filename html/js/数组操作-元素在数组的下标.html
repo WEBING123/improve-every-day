@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <a href="https://www.cnblogs.com/zdz8207/p/js-array-index.html">获取某个值在数组中的下标</a>
+  <script>
+    /*
+* 获取某个元素下标
+* arr: 传入的数组
+* obj: 需要获取下标的元素
+* */
+    function getArrayIndex(arr, obj) {
+      var i = arr.length;
+      while (i--) {
+        if (arr[i] === obj) {
+          return i;
+        }
+      }
+      return -1;
+    }
+    let numArr = [1, 2, 3, 4, 5];
+    let num = 2;
+    let result = getArrayIndex(numArr, num); // 1
+    console.log(result);
+
+    //采用prototype原型实现方式，查找元素在数组中的索引值
+    Array.prototype.getArrayIndex = function (obj) {
+      for (var i = 0; i < this.length; i++) {
+        if (this[i] === obj) {
+          return i;
+        }
+      }
+      return -1;
+    }
+    var testarr = [1, 2, 3, 4, 5];
+    //得到2在testarr中的下标是1
+    let index = testarr.getArrayIndex(2); // 1
+    console.log(index);
+  </script>
+</body>
+
+</html>
