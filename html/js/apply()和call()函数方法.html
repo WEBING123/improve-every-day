@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
 </head>
+
 <body>
-    <script>
-        function Car(brand, color) {
-            this.brand = brand;
-            this.color = color;
-        }
+  <script>
+    function Car(brand, color) {
+      this.brand = brand;
+      this.color = color;
+    }
 
-        var newCar = {};
+    var newCar = {};
 
-        Car.call(newCar,'BMW', 'blue');
-        console.log(newCar);
-    </script>
+    Car.call(newCar, 'BMW', 'blue');
+    console.log(newCar);
+  </script>
 </body>
+
 </html>
